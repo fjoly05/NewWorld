@@ -14,9 +14,9 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     QSqlDatabase maBase = QSqlDatabase::addDatabase("QMYSQL");
-    maBase.setDatabaseName("dbNewWorld2");
+    maBase.setDatabaseName("dbNewWorld3");
     maBase.setHostName("localhost");
-    maBase.setUserName("adminDbNewWorld2");
+    maBase.setUserName("adminDbNewWorld3");
     maBase.setPassword("Pa$$w0rd");
     if(maBase.open())
     {
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
             QString mail = w.getMail();
             QString password = w.getPassword();
-            QString textReq = "select nom, prenom, typePersonnel, supprime from Personnel where email='";
+            QString textReq = "select nomPers, prenomPers, idTypeP, supprimePers from Personnel where email='";
             textReq += mail;
             textReq += "' and mdp='";
             textReq += password;
@@ -37,19 +37,19 @@ int main(int argc, char *argv[])
             {
                 utilisateur.setNom(connection.value(0).toString());
                 utilisateur.setPrenom(connection.value(1).toString());
-                utilisateur.setTypePersonnel(connection.value(2).toString());
+                utilisateur.setTypePersonnel(connection.value(2).toInt());
                 utilisateur.setSupprime(connection.value(3).toBool());
             }
 
 
 
-            //if (utilisateur.getTypePersonnel() == "gestionnaire" && utilisateur.getSupprime() == false)
+            //if (utilisateur.getTypePersonnel() == 0 && utilisateur.getSupprime() == false)
             if (true)
             {
                 MainWindowGestionnaire g;
                 g.show();
                 return a.exec();
-            }else if (utilisateur.getTypePersonnel() == "controleur" && utilisateur.getSupprime() == false)
+            }else if (utilisateur.getTypePersonnel() == 1 && utilisateur.getSupprime() == false)
             {
                 MainWindowControleur c;
                 c.show();

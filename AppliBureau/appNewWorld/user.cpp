@@ -39,12 +39,12 @@ void user::setEmail(const QString &value)
 {
     email = value;
 }
-QString user::getTypePersonnel() const
+int user::getTypePersonnel() const
 {
     return typePersonnel;
 }
 
-void user::setTypePersonnel(const QString &value)
+void user::setTypePersonnel(const int &value)
 {
     typePersonnel = value;
 }

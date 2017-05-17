@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>590</width>
-    <height>546</height>
+    <width>920</width>
+    <height>663</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -143,7 +143,7 @@
              </widget>
             </item>
             <item row="2" column="0">
-             <widget class="QLabel" name="label_3">
+             <widget class="QLabel" name="labelssNumber">
               <property name="text">
                <string>N° securite sociale</string>
               </property>
@@ -153,7 +153,7 @@
              <widget class="QLineEdit" name="lineEditSecuriteSociale"/>
             </item>
             <item row="3" column="0">
-             <widget class="QLabel" name="label">
+             <widget class="QLabel" name="labelFirstName">
               <property name="text">
                <string>First name</string>
               </property>
@@ -163,7 +163,7 @@
              <widget class="QLineEdit" name="lineEditFirstName"/>
             </item>
             <item row="4" column="0">
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="labelLastName">
               <property name="text">
                <string>Last name</string>
               </property>
@@ -173,33 +173,63 @@
              <widget class="QLineEdit" name="lineEditLastName"/>
             </item>
             <item row="5" column="0">
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>Phone number</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="1">
-             <widget class="QLineEdit" name="lineEditPhone"/>
-            </item>
-            <item row="6" column="0">
-             <widget class="QLabel" name="label_5">
+             <widget class="QLabel" name="labelEmail">
               <property name="text">
                <string>Email</string>
               </property>
              </widget>
             </item>
-            <item row="6" column="1">
+            <item row="5" column="1">
              <widget class="QLineEdit" name="lineEditEmail"/>
             </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="labelCountry">
+              <property name="text">
+               <string>Country</string>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="1">
+             <widget class="QLineEdit" name="lineEditCountry"/>
+            </item>
             <item row="7" column="0">
-             <widget class="QLabel" name="label_10">
+             <widget class="QLabel" name="labelPostalCode">
+              <property name="text">
+               <string>Postal code</string>
+              </property>
+             </widget>
+            </item>
+            <item row="7" column="1">
+             <widget class="QLineEdit" name="lineEditPostalCode"/>
+            </item>
+            <item row="8" column="0">
+             <widget class="QLabel" name="labelCity">
+              <property name="text">
+               <string>City</string>
+              </property>
+             </widget>
+            </item>
+            <item row="8" column="1">
+             <widget class="QLineEdit" name="lineEditCity"/>
+            </item>
+            <item row="9" column="0">
+             <widget class="QLabel" name="labelStreet">
+              <property name="text">
+               <string>Street</string>
+              </property>
+             </widget>
+            </item>
+            <item row="9" column="1">
+             <widget class="QLineEdit" name="lineEditStreet"/>
+            </item>
+            <item row="10" column="0">
+             <widget class="QLabel" name="labelType">
               <property name="text">
                <string>Type</string>
               </property>
              </widget>
             </item>
-            <item row="7" column="1">
+            <item row="10" column="1">
              <layout class="QVBoxLayout" name="verticalLayout">
               <item>
                <widget class="QRadioButton" name="radioButtonManager">
@@ -300,6 +330,231 @@
        <attribute name="title">
         <string>&amp;Aisle &amp;&amp; Type</string>
        </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_13">
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>Aisles</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="listWidgetAisles"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_3">
+              <item>
+               <widget class="QLineEdit" name="lineEditAisles"/>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonAddAisles">
+                <property name="text">
+                 <string>Add</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_10">
+              <item>
+               <spacer name="horizontalSpacer_10">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonDeleteAisles">
+                <property name="text">
+                 <string>Delete</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <item>
+             <widget class="QLabel" name="label_7">
+              <property name="text">
+               <string>Categories</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="listWidgetCategories"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_7">
+              <item>
+               <widget class="QLineEdit" name="lineEditCategories"/>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonAddCategories">
+                <property name="text">
+                 <string>Add</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <item>
+               <spacer name="horizontalSpacer_9">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonDeleteCategories">
+                <property name="text">
+                 <string>Delete</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="label_8">
+              <property name="text">
+               <string>Products</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="listWidgetProducts"/>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
+              <item>
+               <widget class="QLineEdit" name="lineEditProducts"/>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonAddProducts">
+                <property name="text">
+                 <string>Add</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_9">
+              <item>
+               <spacer name="horizontalSpacer_8">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButtonDeleteProducts">
+                <property name="text">
+                 <string>Delete</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>41</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_12">
+          <item>
+           <spacer name="horizontalSpacer_11">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="text">
+             <string>Moderate suggestions</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tabStatistiques">
        <attribute name="title">
@@ -315,7 +570,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>590</width>
+     <width>920</width>
      <height>27</height>
     </rect>
    </property>

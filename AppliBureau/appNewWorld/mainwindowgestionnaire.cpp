@@ -26,6 +26,14 @@ MainWindowGestionnaire::MainWindowGestionnaire(QWidget *parent) :
     ui->labelBonjour->setText(tr("Hello ") + utilisateur.getPrenom() + " " + utilisateur.getNom());
     //QString test = utilisateur.getNom();
     chargeLeTableau();
+    chargeLesListes();
+
+}
+
+void MainWindowGestionnaire::chargeLesListes()
+{
+    qDebug()<<"MainWindowGestionnaire::chargeLesListes()";
+    //QString textReqr
 
 }
 
@@ -33,14 +41,14 @@ void MainWindowGestionnaire::chargeLeTableau()
 {
 
     qDebug()<<"MainWindowGestionnaire::chargeLeTableau()";
-    QString textReq = "select prenom, nom , email, typePersonnel, ssNumber, date_Embauche,numeroPersonnel from Personnel";
+    QString textReq = "select personnel.prenomPers, personnel.nomPers , personnel.emailPers, typePersonnel.libelleTypeP, personnel.dateEmbauchePers, personnel.idPers from personnel inner join typePersonnel on personnel.idTypeP=typePersonnel.idTypeP";
     qDebug()<<textReq;
     QSqlQuery reqDonnantEmployes(textReq);
 
-    int nombreDeColonnes= 6;
+    int nombreDeColonnes= 5;
     int nombreDEmployes = reqDonnantEmployes.size();
     QStringList listIntitule;
-    listIntitule<<"First name"<<"Last name"<<"Email"<<"Type"<<"Sécurité sociale"<<"Hired date";
+    listIntitule<<"First name"<<"Last name"<<"Email"<<"Type"<<"Hired date";
 
 
     qDebug()<<nombreDeColonnes;
@@ -59,8 +67,9 @@ void MainWindowGestionnaire::chargeLeTableau()
             ui->tableWidget->setItem(ligne,col,item);
             qDebug()<<result;
         }
-        // on ajoute à la premiere colonne de chaque ligne la valeur de numeroPersonnel
-        ui->tableWidget->item(ligne,0)->setData(32,reqDonnantEmployes.value(6).toString());
+        // on ajoute à la premiere colonne de chaque ligne la valeur de idPers
+        ui->tableWidget->item(ligne,0)->setData(32,reqDonnantEmployes.value(5).toString());
+        qDebug()<<ui->tableWidget->item(ligne,0)->data(32).toString();
         ligne++;
     }
     ui->tableWidget->setHorizontalHeaderLabels(listIntitule);
@@ -95,9 +104,11 @@ MainWindowGestionnaire::~MainWindowGestionnaire()
 
 void MainWindowGestionnaire::on_pushButtonAdd_clicked()
 {
+    qDebug()<< "[1]";
+    //id
     //on récupère tous les ids dans un vecteur
     QVector<int> vectId;
-    QSqlQuery getNumeros("select numeroPersonnel from Personnel;");
+    QSqlQuery getNumeros("select idPers from personnel;");
     while(getNumeros.next())
     {
         int numero = getNumeros.value(0).toInt();
@@ -112,32 +123,60 @@ void MainWindowGestionnaire::on_pushButtonAdd_clicked()
         id++;
         i++;
     }
+    int idPers = id;
+    qDebug()<< idPers;
 
-    int numeroPersonnel = id;
-    qDebug()<< numeroPersonnel;
-    QString nom = ui->lineEditLastName->text();
-    QString prenom = ui->lineEditFirstName->text();
-    QString email = ui->lineEditEmail->text();
-    //récupération du bouton radio coché
-    QString typePersonnel;
-    if(ui->radioButtonController->isChecked())
-    {
-        typePersonnel = "controleur";
-    }
-    else if (ui->radioButtonManager->isChecked())
-    {
-        typePersonnel = "gestionnaire";
-    }
-    QString ssNumber = ui->lineEditSecuriteSociale->text();
-    //enlève les espaces
-    ssNumber.replace(" ","");
+    //mdp
     QString mdp = passwordGeneration(8); //mdp aléatoire
+
+    //set supprime à 0
+    int supprime=0;
+
     // date du jour
     QDate now = QDate::currentDate();
     qDebug()<<now.toString("yyyy-MM-dd");
     QString dateEmbauche = now.toString("yyyy-MM-dd");
-    QString textReq = "insert into Personnel (numeroPersonnel, nom, prenom, email, typePersonnel, ssNumber, mdp, date_Embauche,supprime) values (";
-    textReq += QString::number(numeroPersonnel);
+
+    //ss
+    QString ssNumber = ui->lineEditSecuriteSociale->text();
+    ssNumber.replace(" ","");
+
+    //prenom
+    QString prenom = ui->lineEditFirstName->text();
+
+    //nom
+    QString nom = ui->lineEditLastName->text();
+
+    //mail
+    QString email = ui->lineEditEmail->text();
+
+    //pays
+    QString pays = ui->lineEditCountry->text();
+
+    //cp
+    QString cp = ui->lineEditPostalCode->text();
+
+    //ville
+    QString ville = ui->lineEditCity->text();
+
+    //adresse
+    QString adresse = ui->lineEditStreet->text();
+
+    //type
+    //récupération du bouton radio coché
+    int typePersonnel;
+    if(ui->radioButtonController->isChecked())
+    {
+        typePersonnel = 1;
+    }
+    else if (ui->radioButtonManager->isChecked())
+    {
+        typePersonnel = 0;
+    }
+
+    //requete
+    QString textReq = "insert into personnel (idPers, nomPers, prenomPers, emailPers, ssNb, motDePassePers, dateEmbauchePers, supprimePers, codePostalPers, paysPers, villePers, adressePers, idTypeP) values (";
+    textReq += QString::number(idPers);
     textReq += ", '";
     textReq += nom;
     textReq += "', '";
@@ -145,15 +184,26 @@ void MainWindowGestionnaire::on_pushButtonAdd_clicked()
     textReq += "', '";
     textReq += email;
     textReq += "', '";
-    textReq += typePersonnel;
-    textReq += "', ";
     textReq += ssNumber;
-    textReq += ", '";
+    textReq += "', '";
     textReq += mdp;
     textReq += "', '";
     textReq += dateEmbauche;
-    textReq += "', 0);";
+    textReq += "', ";
+    textReq += supprime;
+    textReq += ", '";
+    textReq += cp;
+    textReq += "', '";
+    textReq += pays;
+    textReq += "', '";
+    textReq += ville;
+    textReq += "', '";
+    textReq += adresse;
+    textReq += "', ";
+    textReq += typePersonnel;
+    textReq += ");";
     qDebug()<< textReq;
+    qDebug()<< "[1]";
 
     QSqlQuery insertUser(textReq);
 
@@ -183,7 +233,7 @@ void MainWindowGestionnaire::on_tableWidget_cellClicked(int row, int column)
 
 
 
-    QString textReq = "select nom,prenom,email,typePersonnel,ssNumber,date_Embauche from Personnel where numeroPersonnel=";
+    QString textReq = "select nom,prenom,email,typePersonnel,ssNumber,date_Embauche from Personnel where idPers=";
     textReq += idEmployeS;
     QSqlQuery reqInfosEmployeS(textReq);
     QString nom;
@@ -206,8 +256,8 @@ void MainWindowGestionnaire::on_tableWidget_cellClicked(int row, int column)
     ui->lineEditSecuriteSociale->setText(ssNumber);
     ui->lineEditFirstName->setText(prenom);
     ui->lineEditLastName->setText(nom);
-    ui->lineEditPhone->setText("");
     ui->lineEditEmail->setText(email);
+    ui->pushButtonEdit->setEnabled(true);
     if(typePersonnel == "gestionnaire")
     {
         ui->radioButtonManager->setChecked(true);
@@ -221,12 +271,12 @@ void MainWindowGestionnaire::on_tableWidget_cellClicked(int row, int column)
 void MainWindowGestionnaire::on_pushButtonDelete_clicked()
 {
     QString idEmploye = ui->labelId2->text();
-    QString textReq = "delete from Personnel where numeroPersonnel=";
+    QString textReq = "delete from Personnel where idPers=";
     textReq += idEmploye;
     QSqlQuery maquery(textReq);
     maquery.exec();
     chargeLeTableau();
-
+    on_pushButtonClear_clicked();
 }
 
 void MainWindowGestionnaire::on_pushButtonClear_clicked()
@@ -240,21 +290,20 @@ void MainWindowGestionnaire::on_pushButtonClear_clicked()
     ui->lineEditEmail->setText("");
     ui->lineEditFirstName->setText("");
     ui->lineEditLastName->setText("");
-    ui->lineEditPhone->setText("");
     ui->lineEditSecuriteSociale->setText("");
     ui->radioButtonController->setChecked(false);
     ui->radioButtonManager->setChecked(false);
+    ui->pushButtonEdit->setEnabled(false);
 }
 
 void MainWindowGestionnaire::on_pushButtonEdit_clicked()
 {
     //on récupère toutes les données
-    QString numeroPersonnel = ui->labelId2->text();
+    QString idPers = ui->labelId2->text();
     QString ssNumber = ui->lineEditSecuriteSociale->text();
     ssNumber.replace(" ","");
     QString nom = ui->lineEditLastName->text();
     QString prenom = ui->lineEditFirstName->text();
-    QString telephone = ui->lineEditPhone->text();
     QString email = ui->lineEditEmail->text();
     //récupération du bouton radio coché
     QString typePersonnel;
@@ -279,8 +328,8 @@ void MainWindowGestionnaire::on_pushButtonEdit_clicked()
     textReq += typePersonnel;
     textReq += "', ssNumber='";
     textReq += ssNumber;
-    textReq += "' where numeroPersonnel=";
-    textReq += numeroPersonnel;
+    textReq += "' where idPers=";
+    textReq += idPers;
     textReq += ");";
     qDebug()<< textReq;
 
@@ -308,8 +357,10 @@ void MainWindowGestionnaire::checkLineEdits()
     qDebug()<< "mail " << mail;
     bool type = ui->radioButtonController->isChecked() || ui->radioButtonManager->isChecked();
     qDebug()<< "type " << type;
+    bool idHidden = ui->labelId2->isHidden();
+    qDebug()<< "idHidden " << idHidden;
 
-    bool ok = ssNumber && prenom && nom && mail && type;
+    bool ok = ssNumber && prenom && nom && mail && type && idHidden;
     qDebug()<< "ok " << ok;
 
     ui->pushButtonAdd->setEnabled(ok);

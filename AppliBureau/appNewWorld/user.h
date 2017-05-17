@@ -19,8 +19,8 @@ public:
     QString getEmail() const;
     void setEmail(const QString &value);
 
-    QString getTypePersonnel() const;
-    void setTypePersonnel(const QString &value);
+    int getTypePersonnel() const;
+    void setTypePersonnel(const int &value);
 
     QString getSsNumber() const;
     void setSsNumber(const QString &value);
@@ -40,7 +40,7 @@ private:
     QString nom;
     QString prenom;
     QString email;
-    QString typePersonnel;
+    int typePersonnel;
     QString ssNumber;
     QString mdp;
     QString dateEmbauche;

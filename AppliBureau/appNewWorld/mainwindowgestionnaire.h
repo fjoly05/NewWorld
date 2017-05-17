@@ -16,6 +16,7 @@ public:
     explicit MainWindowGestionnaire(QWidget *parent = 0);
     QString passwordGeneration (int lenght);
     void chargeLeTableau();
+    void chargeLesListes();
     void checkLineEdits();
     ~MainWindowGestionnaire();
     
