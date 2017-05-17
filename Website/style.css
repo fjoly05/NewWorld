@@ -1,0 +1,364 @@
+body
+{
+	background-image:url("./image/monde4.png");
+	background-position:center;
+	background-color:#E6E6E6;
+	background-repeat: no-repeat;
+	background-color:#E6E6E6;
+	width:100%;
+	height:100%;
+	margin-top:0%;
+	margin-bottom:10%;
+	margin-left:0%;
+	margin-right:0%;
+	display:block;
+	background-attachment:fixed;
+}
+footer
+{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height:20%;
+}
+
+#message
+{
+	width:50%;
+	height:400px;
+	color:#8B5D27;
+	font-size:30px;
+}
+#message p
+{
+	white-space: pre;
+	display:block;
+	position:relative;	
+	top:120px;
+	left:50px;
+	font-family:"Great Vibes",cursive;
+}
+
+
+
+#statut
+{
+	width:100%;
+	height:70%;
+	background-color:#E3DDDC;
+	color:white;
+	text-align:right;
+}
+
+#statut span 
+{
+	right:800px;
+	padding-right:100px;
+}
+
+#barreMenu
+{
+	width:100%;	
+	height:auto;
+	background-image:linear-gradient(#AAA7A0, #E3E3E3);
+	color: white; 
+	font-size:30px;
+}
+#barreMenu p
+{
+	margin-top:0%;
+	margin-bottom:0%;
+	width:100%;
+}
+#barreMenu a
+{
+	height:auto;
+	margin-left:5%;
+	margin-right:5%;
+}
+#barreMenu a:hover
+{
+	background-image:linear-gradient(#E3E3E3,#AAA7A0);
+}
+
+.hide {
+ display:none;
+}
+
+#barreRecherche
+{
+	width:10%;
+	border-radius:10px;
+	background-image:linear-gradient(#E2E2E2, #AAA7A0);
+	color:black;
+	right:3px;
+}
+
+#basPage
+{
+	width:100%;
+	height:210px; 
+	background-image:linear-gradient(#AAA7A0, #E3DDDC);
+	color: white;
+	margin-bottom:0%;
+}
+
+#menuBasPrincipal
+{
+	text-align:center;
+	margin-bottom:15px;
+	color:blue;
+	text-decoration:none;
+}
+
+#menuBasPhrase
+{
+	text-decoration:none;
+	color:#504A4B;
+	text-align:left;
+	margin-top:1px;
+	margin-bottom:1px;
+}
+
+.lien:visited
+{		
+	color:black;	
+}
+
+#jardinier
+{
+	display:block;
+	width:15%;
+	height:auto;
+	text-align:right;
+	position: absolute;
+	top:20%;
+	right:3%;
+}
+
+#boucher
+{
+	display:block;
+	width:15%;
+	height:auto;
+	text-align:right;
+	position: absolute;
+	bottom:30%;
+	right:3%; 
+}
+
+#gauche
+{
+	width:15%;
+	height:100%;
+	text-align:left;
+	float:left;
+	margin-left:6%;
+	margin-right:6%;
+	display:inline-block;
+}
+
+#centre
+{
+	width:15%;
+	height:100%;
+	text-align:left;
+	float:center;
+	margin-right:6%;
+	margin-left:15%;
+	display:inline-block;	
+}
+
+#droite
+{
+	width:15%;
+	height:100%;
+	text-align:left;
+	float:right;
+	margin-right:6%;
+	margin-left:6%;
+	display:inline-block;
+}
+
+#copy
+{
+	width:100%;
+	height:15px;
+	bottom:35px;
+	text-align:right;
+	font-size:small;
+	float:right;
+	color:#504A4B;
+	margin-right:1%;
+	margin-bottom:0%;
+	display:block;
+	position:relative;
+}
+
+#inscription
+{
+	width:50%;
+	height:800px;
+}
+
+#inscription p
+{
+	color:black;
+	font-size:15px;
+	display:block;
+	position:relative;	
+	top:15%;
+	left:3%;
+}
+
+legend
+{
+	color:white;
+}
+
+#contenu label 
+{
+	color:white;
+	width:150px;
+	display:inline-block;
+}
+
+#legume
+{
+	width:400px;
+	height:400px;
+}
+
+#fruit
+{
+	width:400px;
+	height:400px;
+}
+
+#charcuterie
+{
+	width:400px;
+	height:400px;
+}
+
+#laitier
+{
+	width:400px;
+	height:400px;
+}
+
+#cereales
+{
+	width:400px;
+	height:400px;
+}
+
+#epicerie
+{
+	width:400px;
+	height:400px;
+}
+
+
+#typeProduit
+{
+	color:white;
+	display:block;
+	position:relative;	
+	left:20px;
+	text-align:center;
+	background-color:black;
+	font-size:200%;
+  	border: 2px white solid;
+	margin-right:40px;
+	margin-top:40px;
+	margin-bottom:40px;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+#produit
+{
+	color:white;
+	font-size:8px;
+	display:block;
+	position:relative;	
+	background-color:black;
+	font-size:100%;
+  	border: 2px white solid;
+	margin-right:15%;
+	margin-left:15%;
+	height:250px;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+#supprimerPanier
+{
+	margin-left:35px;
+}
+
+#photoProduit
+{
+	width:200px;
+	height:200px;
+	float:left;
+	text-align:center;
+	margin-top:10px;
+	margin-bottom:25px;
+	margin-left:25px;
+}
+#produitNom
+{
+	margin-left:275px;
+	font-weight:bold;
+}
+
+#photoProduitPanier
+{
+	width:200px;
+	height:200px;
+	float:left;
+	text-align:center;
+	margin-top:-25px;
+	margin-bottom:25px;
+	margin-left:25px;
+
+}
+#prixProduit
+{
+	margin-left:260px;
+}
+
+#qteProduit
+{
+	margin-left:260px;
+}
+
+#compteurQte
+{
+	margin-left:35px;
+}
+
+#totalCout
+{
+	margin-left:260px;
+}
+
+#btAjout 
+{
+	margin-right:10px;
+	float:right;
+}
+
+#tbType
+{
+	background-color: rgba(0, 0, 0, 0.8);
+	text-align:center;
+	color:white;
+	font-size:200%;
+}
+
+#tdVide
+{
+	width:200px;
+}
