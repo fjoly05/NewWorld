@@ -49,17 +49,21 @@ SOURCES       = main.cpp \
 		dialogconnection.cpp \
 		mainwindowgestionnaire.cpp \
 		mainwindowcontroleur.cpp \
-		user.cpp moc_dialogconnection.cpp \
+		user.cpp \
+		dialogmoderatesuggestions.cpp moc_dialogconnection.cpp \
 		moc_mainwindowgestionnaire.cpp \
-		moc_mainwindowcontroleur.cpp
+		moc_mainwindowcontroleur.cpp \
+		moc_dialogmoderatesuggestions.cpp
 OBJECTS       = main.o \
 		dialogconnection.o \
 		mainwindowgestionnaire.o \
 		mainwindowcontroleur.o \
 		user.o \
+		dialogmoderatesuggestions.o \
 		moc_dialogconnection.o \
 		moc_mainwindowgestionnaire.o \
-		moc_mainwindowcontroleur.o
+		moc_mainwindowcontroleur.o \
+		moc_dialogmoderatesuggestions.o
 DIST          = /usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -118,7 +122,8 @@ DIST          = /usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		dialogconnection.cpp \
 		mainwindowgestionnaire.cpp \
 		mainwindowcontroleur.cpp \
-		user.cpp
+		user.cpp \
+		dialogmoderatesuggestions.cpp
 QMAKE_TARGET  = appNewWorld
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = appNewWorld
@@ -148,7 +153,7 @@ first: all
 
 all: Makefile $(TARGET)
 
-$(TARGET): ui_dialogconnection.h ui_mainwindowgestionnaire.h ui_mainwindowcontroleur.h $(OBJECTS)  
+$(TARGET): ui_dialogconnection.h ui_mainwindowgestionnaire.h ui_mainwindowcontroleur.h ui_dialogmoderatesuggestions.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: appNewWorld.pro /usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -277,7 +282,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/appNewWorld1.0.0 || mkdir -p .tmp/appNewWorld1.0.0
-	$(COPY_FILE) --parents $(DIST) .tmp/appNewWorld1.0.0/ && $(COPY_FILE) --parents dialogconnection.h mainwindowgestionnaire.h mainwindowcontroleur.h user.h .tmp/appNewWorld1.0.0/ && $(COPY_FILE) --parents main.cpp dialogconnection.cpp mainwindowgestionnaire.cpp mainwindowcontroleur.cpp user.cpp .tmp/appNewWorld1.0.0/ && $(COPY_FILE) --parents dialogconnection.ui mainwindowgestionnaire.ui mainwindowcontroleur.ui .tmp/appNewWorld1.0.0/ && (cd `dirname .tmp/appNewWorld1.0.0` && $(TAR) appNewWorld1.0.0.tar appNewWorld1.0.0 && $(COMPRESS) appNewWorld1.0.0.tar) && $(MOVE) `dirname .tmp/appNewWorld1.0.0`/appNewWorld1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/appNewWorld1.0.0
+	$(COPY_FILE) --parents $(DIST) .tmp/appNewWorld1.0.0/ && $(COPY_FILE) --parents dialogconnection.h mainwindowgestionnaire.h mainwindowcontroleur.h user.h dialogmoderatesuggestions.h .tmp/appNewWorld1.0.0/ && $(COPY_FILE) --parents main.cpp dialogconnection.cpp mainwindowgestionnaire.cpp mainwindowcontroleur.cpp user.cpp dialogmoderatesuggestions.cpp .tmp/appNewWorld1.0.0/ && $(COPY_FILE) --parents dialogconnection.ui mainwindowgestionnaire.ui mainwindowcontroleur.ui dialogmoderatesuggestions.ui .tmp/appNewWorld1.0.0/ && (cd `dirname .tmp/appNewWorld1.0.0` && $(TAR) appNewWorld1.0.0.tar appNewWorld1.0.0 && $(COMPRESS) appNewWorld1.0.0.tar) && $(MOVE) `dirname .tmp/appNewWorld1.0.0`/appNewWorld1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/appNewWorld1.0.0
 
 
 clean:compiler_clean 
@@ -300,24 +305,27 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_dialogconnection.cpp moc_mainwindowgestionnaire.cpp moc_mainwindowcontroleur.cpp
+compiler_moc_header_make_all: moc_dialogconnection.cpp moc_mainwindowgestionnaire.cpp moc_mainwindowcontroleur.cpp moc_dialogmoderatesuggestions.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_dialogconnection.cpp moc_mainwindowgestionnaire.cpp moc_mainwindowcontroleur.cpp
+	-$(DEL_FILE) moc_dialogconnection.cpp moc_mainwindowgestionnaire.cpp moc_mainwindowcontroleur.cpp moc_dialogmoderatesuggestions.cpp
 moc_dialogconnection.cpp: dialogconnection.h
-	/usr/lib/i386-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++ -I/home/fjoly/appNewWorld -I/usr/include/i386-linux-gnu/qt5 -I/usr/include/i386-linux-gnu/qt5/QtWidgets -I/usr/include/i386-linux-gnu/qt5/QtSql -I/usr/include/i386-linux-gnu/qt5/QtGui -I/usr/include/i386-linux-gnu/qt5/QtCore -I/usr/include/c++/4.9 -I/usr/include/i386-linux-gnu/c++/4.9 -I/usr/include/c++/4.9/backward -I/usr/lib/gcc/i586-linux-gnu/4.9/include -I/usr/local/include -I/usr/lib/gcc/i586-linux-gnu/4.9/include-fixed -I/usr/include/i386-linux-gnu -I/usr/include dialogconnection.h -o moc_dialogconnection.cpp
+	/usr/lib/i386-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++ -I/home/fjoly/public_html/NewWorld/AppliBureau/appNewWorld -I/usr/include/i386-linux-gnu/qt5 -I/usr/include/i386-linux-gnu/qt5/QtWidgets -I/usr/include/i386-linux-gnu/qt5/QtSql -I/usr/include/i386-linux-gnu/qt5/QtGui -I/usr/include/i386-linux-gnu/qt5/QtCore -I/usr/include/c++/4.9 -I/usr/include/i386-linux-gnu/c++/4.9 -I/usr/include/c++/4.9/backward -I/usr/lib/gcc/i586-linux-gnu/4.9/include -I/usr/local/include -I/usr/lib/gcc/i586-linux-gnu/4.9/include-fixed -I/usr/include/i386-linux-gnu -I/usr/include dialogconnection.h -o moc_dialogconnection.cpp
 
 moc_mainwindowgestionnaire.cpp: user.h \
 		mainwindowgestionnaire.h
-	/usr/lib/i386-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++ -I/home/fjoly/appNewWorld -I/usr/include/i386-linux-gnu/qt5 -I/usr/include/i386-linux-gnu/qt5/QtWidgets -I/usr/include/i386-linux-gnu/qt5/QtSql -I/usr/include/i386-linux-gnu/qt5/QtGui -I/usr/include/i386-linux-gnu/qt5/QtCore -I/usr/include/c++/4.9 -I/usr/include/i386-linux-gnu/c++/4.9 -I/usr/include/c++/4.9/backward -I/usr/lib/gcc/i586-linux-gnu/4.9/include -I/usr/local/include -I/usr/lib/gcc/i586-linux-gnu/4.9/include-fixed -I/usr/include/i386-linux-gnu -I/usr/include mainwindowgestionnaire.h -o moc_mainwindowgestionnaire.cpp
+	/usr/lib/i386-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++ -I/home/fjoly/public_html/NewWorld/AppliBureau/appNewWorld -I/usr/include/i386-linux-gnu/qt5 -I/usr/include/i386-linux-gnu/qt5/QtWidgets -I/usr/include/i386-linux-gnu/qt5/QtSql -I/usr/include/i386-linux-gnu/qt5/QtGui -I/usr/include/i386-linux-gnu/qt5/QtCore -I/usr/include/c++/4.9 -I/usr/include/i386-linux-gnu/c++/4.9 -I/usr/include/c++/4.9/backward -I/usr/lib/gcc/i586-linux-gnu/4.9/include -I/usr/local/include -I/usr/lib/gcc/i586-linux-gnu/4.9/include-fixed -I/usr/include/i386-linux-gnu -I/usr/include mainwindowgestionnaire.h -o moc_mainwindowgestionnaire.cpp
 
 moc_mainwindowcontroleur.cpp: mainwindowcontroleur.h
-	/usr/lib/i386-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++ -I/home/fjoly/appNewWorld -I/usr/include/i386-linux-gnu/qt5 -I/usr/include/i386-linux-gnu/qt5/QtWidgets -I/usr/include/i386-linux-gnu/qt5/QtSql -I/usr/include/i386-linux-gnu/qt5/QtGui -I/usr/include/i386-linux-gnu/qt5/QtCore -I/usr/include/c++/4.9 -I/usr/include/i386-linux-gnu/c++/4.9 -I/usr/include/c++/4.9/backward -I/usr/lib/gcc/i586-linux-gnu/4.9/include -I/usr/local/include -I/usr/lib/gcc/i586-linux-gnu/4.9/include-fixed -I/usr/include/i386-linux-gnu -I/usr/include mainwindowcontroleur.h -o moc_mainwindowcontroleur.cpp
+	/usr/lib/i386-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++ -I/home/fjoly/public_html/NewWorld/AppliBureau/appNewWorld -I/usr/include/i386-linux-gnu/qt5 -I/usr/include/i386-linux-gnu/qt5/QtWidgets -I/usr/include/i386-linux-gnu/qt5/QtSql -I/usr/include/i386-linux-gnu/qt5/QtGui -I/usr/include/i386-linux-gnu/qt5/QtCore -I/usr/include/c++/4.9 -I/usr/include/i386-linux-gnu/c++/4.9 -I/usr/include/c++/4.9/backward -I/usr/lib/gcc/i586-linux-gnu/4.9/include -I/usr/local/include -I/usr/lib/gcc/i586-linux-gnu/4.9/include-fixed -I/usr/include/i386-linux-gnu -I/usr/include mainwindowcontroleur.h -o moc_mainwindowcontroleur.cpp
+
+moc_dialogmoderatesuggestions.cpp: dialogmoderatesuggestions.h
+	/usr/lib/i386-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++ -I/home/fjoly/public_html/NewWorld/AppliBureau/appNewWorld -I/usr/include/i386-linux-gnu/qt5 -I/usr/include/i386-linux-gnu/qt5/QtWidgets -I/usr/include/i386-linux-gnu/qt5/QtSql -I/usr/include/i386-linux-gnu/qt5/QtGui -I/usr/include/i386-linux-gnu/qt5/QtCore -I/usr/include/c++/4.9 -I/usr/include/i386-linux-gnu/c++/4.9 -I/usr/include/c++/4.9/backward -I/usr/lib/gcc/i586-linux-gnu/4.9/include -I/usr/local/include -I/usr/lib/gcc/i586-linux-gnu/4.9/include-fixed -I/usr/include/i386-linux-gnu -I/usr/include dialogmoderatesuggestions.h -o moc_dialogmoderatesuggestions.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_dialogconnection.h ui_mainwindowgestionnaire.h ui_mainwindowcontroleur.h
+compiler_uic_make_all: ui_dialogconnection.h ui_mainwindowgestionnaire.h ui_mainwindowcontroleur.h ui_dialogmoderatesuggestions.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_dialogconnection.h ui_mainwindowgestionnaire.h ui_mainwindowcontroleur.h
+	-$(DEL_FILE) ui_dialogconnection.h ui_mainwindowgestionnaire.h ui_mainwindowcontroleur.h ui_dialogmoderatesuggestions.h
 ui_dialogconnection.h: dialogconnection.ui
 	/usr/lib/i386-linux-gnu/qt5/bin/uic dialogconnection.ui -o ui_dialogconnection.h
 
@@ -326,6 +334,9 @@ ui_mainwindowgestionnaire.h: mainwindowgestionnaire.ui
 
 ui_mainwindowcontroleur.h: mainwindowcontroleur.ui
 	/usr/lib/i386-linux-gnu/qt5/bin/uic mainwindowcontroleur.ui -o ui_mainwindowcontroleur.h
+
+ui_dialogmoderatesuggestions.h: dialogmoderatesuggestions.ui
+	/usr/lib/i386-linux-gnu/qt5/bin/uic dialogmoderatesuggestions.ui -o ui_dialogmoderatesuggestions.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -349,7 +360,8 @@ dialogconnection.o: dialogconnection.cpp dialogconnection.h \
 
 mainwindowgestionnaire.o: mainwindowgestionnaire.cpp mainwindowgestionnaire.h \
 		user.h \
-		ui_mainwindowgestionnaire.h
+		ui_mainwindowgestionnaire.h \
+		dialogmoderatesuggestions.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindowgestionnaire.o mainwindowgestionnaire.cpp
 
 mainwindowcontroleur.o: mainwindowcontroleur.cpp mainwindowcontroleur.h \
@@ -359,6 +371,10 @@ mainwindowcontroleur.o: mainwindowcontroleur.cpp mainwindowcontroleur.h \
 user.o: user.cpp user.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o user.o user.cpp
 
+dialogmoderatesuggestions.o: dialogmoderatesuggestions.cpp dialogmoderatesuggestions.h \
+		ui_dialogmoderatesuggestions.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dialogmoderatesuggestions.o dialogmoderatesuggestions.cpp
+
 moc_dialogconnection.o: moc_dialogconnection.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dialogconnection.o moc_dialogconnection.cpp
 
@@ -367,6 +383,9 @@ moc_mainwindowgestionnaire.o: moc_mainwindowgestionnaire.cpp
 
 moc_mainwindowcontroleur.o: moc_mainwindowcontroleur.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindowcontroleur.o moc_mainwindowcontroleur.cpp
+
+moc_dialogmoderatesuggestions.o: moc_dialogmoderatesuggestions.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dialogmoderatesuggestions.o moc_dialogmoderatesuggestions.cpp
 
 ####### Install
 

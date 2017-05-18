@@ -16,15 +16,18 @@ SOURCES += main.cpp\
     dialogconnection.cpp \
     mainwindowgestionnaire.cpp \
     mainwindowcontroleur.cpp \
-    user.cpp
+    user.cpp \
+    dialogmoderatesuggestions.cpp
 
 HEADERS  += \
     dialogconnection.h \
     mainwindowgestionnaire.h \
     mainwindowcontroleur.h \
-    user.h
+    user.h \
+    dialogmoderatesuggestions.h
 
 FORMS    += \
     dialogconnection.ui \
     mainwindowgestionnaire.ui \
-    mainwindowcontroleur.ui
+    mainwindowcontroleur.ui \
+    dialogmoderatesuggestions.ui

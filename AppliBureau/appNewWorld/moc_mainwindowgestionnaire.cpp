@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindowGestionnaire_t {
-    QByteArrayData data[16];
-    char stringdata[369];
+    QByteArrayData data[34];
+    char stringdata[913];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -44,7 +44,25 @@ QT_MOC_LITERAL(11, 212, 32),
 QT_MOC_LITERAL(12, 245, 31),
 QT_MOC_LITERAL(13, 277, 28),
 QT_MOC_LITERAL(14, 306, 29),
-QT_MOC_LITERAL(15, 336, 32)
+QT_MOC_LITERAL(15, 336, 32),
+QT_MOC_LITERAL(16, 369, 30),
+QT_MOC_LITERAL(17, 400, 33),
+QT_MOC_LITERAL(18, 434, 27),
+QT_MOC_LITERAL(19, 462, 29),
+QT_MOC_LITERAL(20, 492, 30),
+QT_MOC_LITERAL(21, 523, 34),
+QT_MOC_LITERAL(22, 558, 32),
+QT_MOC_LITERAL(23, 591, 29),
+QT_MOC_LITERAL(24, 621, 33),
+QT_MOC_LITERAL(25, 655, 31),
+QT_MOC_LITERAL(26, 687, 33),
+QT_MOC_LITERAL(27, 721, 27),
+QT_MOC_LITERAL(28, 749, 5),
+QT_MOC_LITERAL(29, 755, 31),
+QT_MOC_LITERAL(30, 787, 29),
+QT_MOC_LITERAL(31, 817, 37),
+QT_MOC_LITERAL(32, 855, 35),
+QT_MOC_LITERAL(33, 891, 21)
     },
     "MainWindowGestionnaire\0on_pushButtonAdd_clicked\0"
     "\0on_tableWidget_cellClicked\0row\0column\0"
@@ -56,7 +74,24 @@ QT_MOC_LITERAL(15, 336, 32)
     "on_lineEditLastName_textChanged\0"
     "on_lineEditEmail_textChanged\0"
     "on_radioButtonManager_clicked\0"
-    "on_radioButtonController_clicked"
+    "on_radioButtonController_clicked\0"
+    "on_lineEditCountry_textChanged\0"
+    "on_lineEditPostalCode_textChanged\0"
+    "on_lineEditCity_textChanged\0"
+    "on_lineEditStreet_textChanged\0"
+    "on_pushButtonAddAisles_clicked\0"
+    "on_pushButtonAddCategories_clicked\0"
+    "on_pushButtonAddProducts_clicked\0"
+    "on_lineEditAisles_textChanged\0"
+    "on_lineEditCategories_textChanged\0"
+    "on_lineEditProducts_textChanged\0"
+    "on_pushButtonDeleteAisles_clicked\0"
+    "on_listWidgetAisles_clicked\0index\0"
+    "on_listWidgetCategories_clicked\0"
+    "on_listWidgetProducts_clicked\0"
+    "on_pushButtonDeleteCategories_clicked\0"
+    "on_pushButtonDeleteProducts_clicked\0"
+    "on_pushButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -66,7 +101,7 @@ static const uint qt_meta_data_MainWindowGestionnaire[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      28,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -74,17 +109,34 @@ static const uint qt_meta_data_MainWindowGestionnaire[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   69,    2, 0x08 /* Private */,
-       3,    2,   70,    2, 0x08 /* Private */,
-       6,    0,   75,    2, 0x08 /* Private */,
-       7,    0,   76,    2, 0x08 /* Private */,
-       8,    0,   77,    2, 0x08 /* Private */,
-       9,    1,   78,    2, 0x08 /* Private */,
-      11,    1,   81,    2, 0x08 /* Private */,
-      12,    1,   84,    2, 0x08 /* Private */,
-      13,    1,   87,    2, 0x08 /* Private */,
-      14,    0,   90,    2, 0x08 /* Private */,
-      15,    0,   91,    2, 0x08 /* Private */,
+       1,    0,  154,    2, 0x08 /* Private */,
+       3,    2,  155,    2, 0x08 /* Private */,
+       6,    0,  160,    2, 0x08 /* Private */,
+       7,    0,  161,    2, 0x08 /* Private */,
+       8,    0,  162,    2, 0x08 /* Private */,
+       9,    1,  163,    2, 0x08 /* Private */,
+      11,    1,  166,    2, 0x08 /* Private */,
+      12,    1,  169,    2, 0x08 /* Private */,
+      13,    1,  172,    2, 0x08 /* Private */,
+      14,    0,  175,    2, 0x08 /* Private */,
+      15,    0,  176,    2, 0x08 /* Private */,
+      16,    1,  177,    2, 0x08 /* Private */,
+      17,    1,  180,    2, 0x08 /* Private */,
+      18,    1,  183,    2, 0x08 /* Private */,
+      19,    1,  186,    2, 0x08 /* Private */,
+      20,    0,  189,    2, 0x08 /* Private */,
+      21,    0,  190,    2, 0x08 /* Private */,
+      22,    0,  191,    2, 0x08 /* Private */,
+      23,    1,  192,    2, 0x08 /* Private */,
+      24,    1,  195,    2, 0x08 /* Private */,
+      25,    1,  198,    2, 0x08 /* Private */,
+      26,    0,  201,    2, 0x08 /* Private */,
+      27,    1,  202,    2, 0x08 /* Private */,
+      29,    1,  205,    2, 0x08 /* Private */,
+      30,    1,  208,    2, 0x08 /* Private */,
+      31,    0,  211,    2, 0x08 /* Private */,
+      32,    0,  212,    2, 0x08 /* Private */,
+      33,    0,  213,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -96,6 +148,23 @@ static const uint qt_meta_data_MainWindowGestionnaire[] = {
     QMetaType::Void, QMetaType::QString,   10,
     QMetaType::Void, QMetaType::QString,   10,
     QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void, QMetaType::QString,   10,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QModelIndex,   28,
+    QMetaType::Void, QMetaType::QModelIndex,   28,
+    QMetaType::Void, QMetaType::QModelIndex,   28,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -118,6 +187,23 @@ void MainWindowGestionnaire::qt_static_metacall(QObject *_o, QMetaObject::Call _
         case 8: _t->on_lineEditEmail_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 9: _t->on_radioButtonManager_clicked(); break;
         case 10: _t->on_radioButtonController_clicked(); break;
+        case 11: _t->on_lineEditCountry_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 12: _t->on_lineEditPostalCode_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 13: _t->on_lineEditCity_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 14: _t->on_lineEditStreet_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 15: _t->on_pushButtonAddAisles_clicked(); break;
+        case 16: _t->on_pushButtonAddCategories_clicked(); break;
+        case 17: _t->on_pushButtonAddProducts_clicked(); break;
+        case 18: _t->on_lineEditAisles_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 19: _t->on_lineEditCategories_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 20: _t->on_lineEditProducts_textChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 21: _t->on_pushButtonDeleteAisles_clicked(); break;
+        case 22: _t->on_listWidgetAisles_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 23: _t->on_listWidgetCategories_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 24: _t->on_listWidgetProducts_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 25: _t->on_pushButtonDeleteCategories_clicked(); break;
+        case 26: _t->on_pushButtonDeleteProducts_clicked(); break;
+        case 27: _t->on_pushButton_clicked(); break;
         default: ;
         }
     }
@@ -148,13 +234,13 @@ int MainWindowGestionnaire::qt_metacall(QMetaObject::Call _c, int _id, void **_a
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 28)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 28;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 28)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 11;
+        _id -= 28;
     }
     return _id;
 }
