@@ -2,6 +2,8 @@
 #define DIALOGMODERATESUGGESTIONS_H
 
 #include <QDialog>
+#include <QVector>
+#include <QListWidget>
 
 namespace Ui {
 class DialogModerateSuggestions;
@@ -14,6 +16,8 @@ class DialogModerateSuggestions : public QDialog
 public:
     explicit DialogModerateSuggestions(QWidget *parent = 0);
     void chargeLesSuggestions();
+    void chargeLesSuggestionsDansVect();
+    void chargeAcceptesRejetes();
     ~DialogModerateSuggestions();
 
 private slots:
@@ -23,8 +27,18 @@ private slots:
 
     void on_pushButtonValidation_clicked();
 
+    void on_listWidgetSuggestedProds_clicked(const QModelIndex &index);
+
+    void on_pushButtonCancel_clicked();
+
+    void on_listWidgetAcceptedProds_clicked(const QModelIndex &index);
+
+    void on_listWidgetRejectedProds_clicked(const QModelIndex &index);
+
 private:
     Ui::DialogModerateSuggestions *ui;
+    QVector<int> vectIdProduitsAValide;
+    QListWidget* selectedList;
 };
 
 #endif // DIALOGMODERATESUGGESTIONS_H

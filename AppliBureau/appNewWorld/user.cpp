@@ -30,14 +30,14 @@ void user::setPrenom(const QString &value)
 {
     prenom = value;
 }
-QString user::getEmail() const
+QString user::getLogin() const
 {
-    return email;
+    return login;
 }
 
-void user::setEmail(const QString &value)
+void user::setLogin(const QString &value)
 {
-    email = value;
+    login = value;
 }
 int user::getTypePersonnel() const
 {

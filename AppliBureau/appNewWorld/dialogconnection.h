@@ -13,7 +13,7 @@ class DialogConnection : public QDialog
     
 public:
     explicit DialogConnection(QWidget *parent = 0);
-    QString getMail();
+    QString getLogin();
     QString getPassword();
     ~DialogConnection();
     
@@ -24,7 +24,7 @@ private slots:
 
 private:
     Ui::DialogConnection *ui;
-    QString mail;
+    QString login;
     QString password;
 };
 

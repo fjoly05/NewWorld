@@ -40,13 +40,14 @@ MainWindowGestionnaire::MainWindowGestionnaire(QWidget *parent) :
     chargeLeTableau();
     chargeRayons();
 
+    ui->tabWidget->setCurrentIndex(0);
 }
 
 void MainWindowGestionnaire::chargeRayons()
 {
     ui->listWidgetAisles->clear();
     qDebug()<<"MainWindowGestionnaire::chargeLesListes()";
-    QString textReq = "select idRay, libelleRay from rayon";
+    QString textReq = "select idRay, libelleRay from rayon where supprimeRay=0";
     QSqlQuery reqDonnantRayons(textReq);
     while (reqDonnantRayons.next())
     {
@@ -60,7 +61,7 @@ void MainWindowGestionnaire::chargeRayons()
 void MainWindowGestionnaire::chargeCategories()
 {
     ui->listWidgetCategories->clear();
-    QString textReq2 = "select idCat, libelleCat from categorie where idRay=";
+    QString textReq2 = "select idCat, libelleCat from categorie where supprimeCat=0 and idRay=";
     textReq2 += ui->listWidgetAisles->currentItem()->data(32).toString();
     qDebug()<<textReq2;
     QSqlQuery reqDonnantCategories(textReq2);
@@ -75,8 +76,10 @@ void MainWindowGestionnaire::chargeCategories()
 
 void MainWindowGestionnaire::chargeProduits()
 {
+    qDebug()<<"MainWindowGestionnaire::chargeProduits()";
     ui->listWidgetProducts->clear();
-    QString textReq2 = "select idProd, libelleProd from produit where idCat=";
+    qDebug()<<"after clear";
+    QString textReq2 = "select idProd, libelleProd from produit where supprimeProd=0 and etatProd='VAL' and idCat=";
     textReq2 += ui->listWidgetCategories->currentItem()->data(32).toString();
     qDebug()<<textReq2;
     QSqlQuery reqDonnantProduits(textReq2);
@@ -175,7 +178,7 @@ void MainWindowGestionnaire::on_pushButtonAdd_clicked()
         i++;
     }
     int idPers = id;
-    qDebug()<< idPers;
+    qDebug()<< "idPers : " << idPers;
 
     //mdp
     QString mdp = passwordGeneration(8); //mdp aléatoire
@@ -213,6 +216,11 @@ void MainWindowGestionnaire::on_pushButtonAdd_clicked()
     //adresse
     QString adresse = ui->lineEditStreet->text();
 
+    //login
+    QString login= prenom[0].toLower() + nom.toLower();
+    qDebug()<<login;
+
+
     //type
     //récupération du bouton radio coché
     int typePersonnel;
@@ -226,7 +234,7 @@ void MainWindowGestionnaire::on_pushButtonAdd_clicked()
     }
 
     //requete
-    QString textReq = "insert into personnel (idPers, nomPers, prenomPers, emailPers, ssNb, motDePassePers, dateEmbauchePers, supprimePers, codePostalPers, paysPers, villePers, adressePers, idTypeP) values (";
+    QString textReq = "insert into personnel (idPers, nomPers, prenomPers, emailPers, ssNb, motDePassePers, dateEmbauchePers, supprimePers, codePostalPers, paysPers, villePers, adressePers, loginPers, idTypeP) values (";
     textReq += QString::number(idPers);
     textReq += ", '";
     textReq += nom;
@@ -250,6 +258,8 @@ void MainWindowGestionnaire::on_pushButtonAdd_clicked()
     textReq += ville;
     textReq += "', '";
     textReq += adresse;
+    textReq += "', '";
+    textReq += login;
     textReq += "', ";
     textReq += QString::number(typePersonnel);
     textReq += ");";
@@ -320,7 +330,7 @@ void MainWindowGestionnaire::on_tableWidget_cellClicked(int row, int column)
     ui->lineEditCity->setText(ville);
     ui->lineEditStreet->setText(adresse);
 
-    if(typePersonnel == "0")
+    if(typePersonnel == "2")
     {
         ui->radioButtonManager->setChecked(true);
     }
@@ -358,8 +368,7 @@ void MainWindowGestionnaire::on_pushButtonClear_clicked()
     ui->lineEditPostalCode->setText("");
     ui->lineEditCity->setText("");
     ui->lineEditStreet->setText("");
-    ui->radioButtonController->setChecked(false);
-    ui->radioButtonManager->setChecked(false);
+    ui->radioButtonController->setChecked(true);
     ui->pushButtonEdit->setEnabled(false);
 }
 
@@ -532,11 +541,11 @@ void MainWindowGestionnaire::on_pushButtonAddAisles_clicked()
     QString libelleRay = ui->lineEditAisles->text();
 
     //requete
-    QString textReq = "insert into rayon (idRay, libelleRay) values (";
+    QString textReq = "insert into rayon (idRay, libelleRay, supprimeRay) values (";
     textReq += QString::number(idRay);
     textReq += ", '";
     textReq += libelleRay;
-    textReq += "');";
+    textReq += "', 0);";
 
 
     QSqlQuery ajoutRayon;
@@ -572,13 +581,13 @@ void MainWindowGestionnaire::on_pushButtonAddCategories_clicked()
     QString libelleCat = ui->lineEditCategories->text();
 
     //requete
-    QString textReq = "insert into categorie (idCat, libelleCat, idRay) values (";
+    QString textReq = "insert into categorie (idCat, libelleCat, idRay, supprimeCat) values (";
     textReq += QString::number(idCat);
     textReq += ", '";
     textReq += libelleCat;
     textReq += "', ";
     textReq += ui->listWidgetAisles->currentItem()->data(32).toString();
-    textReq += ")";
+    textReq += ", 0)";
     qDebug()<< textReq;
 
 
@@ -613,13 +622,13 @@ void MainWindowGestionnaire::on_pushButtonAddProducts_clicked()
     QString libelleProd = ui->lineEditProducts->text();
 
     //requete
-    QString textReq = "insert into produit (idProd, libelleProd, idCat) values (";
+    QString textReq = "insert into produit (idProd, libelleProd, idCat, supprimeProd, etatProd) values (";
     textReq += QString::number(idProd);
     textReq += ", '";
     textReq += libelleProd;
     textReq += "', ";
     textReq += ui->listWidgetCategories->currentItem()->data(32).toString();
-    textReq += ")";
+    textReq += ", 0, 'VAL')";
     qDebug()<<textReq;
 
 
@@ -652,6 +661,10 @@ void MainWindowGestionnaire::on_listWidgetAisles_clicked(const QModelIndex &inde
 {
     ui->lineEditCategories->setEnabled(true);
     ui->pushButtonDeleteAisles->setEnabled(true);
+    ui->pushButtonDeleteProducts->setEnabled(false);
+    ui->pushButtonDeleteCategories->setEnabled(false);
+    ui->lineEditProducts->setEnabled(false);
+    ui->listWidgetProducts->clear();
     chargeCategories();
 }
 
@@ -659,6 +672,7 @@ void MainWindowGestionnaire::on_listWidgetCategories_clicked(const QModelIndex &
 {
     ui->lineEditProducts->setEnabled(true);
     ui->pushButtonDeleteCategories->setEnabled(true);
+    ui->pushButtonDeleteProducts->setEnabled(false);
     chargeProduits();
 }
 
@@ -671,83 +685,48 @@ void MainWindowGestionnaire::on_pushButtonDeleteAisles_clicked()
 {
     QString idRayonDel = ui->listWidgetAisles->currentItem()->data(32).toString();
     //requete
-    QString textReq = "delete from rayon where idRay=";
+    QString textReq = "update rayon set supprimeRay=1 where idRay=";
     textReq += idRayonDel;
     QSqlQuery delRayon;
     delRayon.exec(textReq);
     chargeRayons();
+    ui->pushButtonDeleteAisles->setEnabled(false);
 }
 
 void MainWindowGestionnaire::on_pushButtonDeleteCategories_clicked()
 {
     QString idCatDel = ui->listWidgetCategories->currentItem()->data(32).toString();
     //requete
-    QString textReq = "delete from categorie where idCat=";
+    QString textReq = "update categorie set supprimeCat=1 where idCat=";
     textReq += idCatDel;
     QSqlQuery delCat;
     delCat.exec(textReq);
     chargeCategories();
+
+    ui->pushButtonDeleteCategories->setEnabled(false);
 }
 
 void MainWindowGestionnaire::on_pushButtonDeleteProducts_clicked()
 {
     QString idProdDel = ui->listWidgetProducts->currentItem()->data(32).toString();
     //requete
-    QString textReq = "delete from produit where idProd=";
+    QString textReq = "update produit set supprimeProd=1 where idProd=";
     textReq += idProdDel;
     QSqlQuery delProd;
     delProd.exec(textReq);
     chargeProduits();
+
+    ui->pushButtonDeleteProducts->setEnabled(false);
 }
 
 void MainWindowGestionnaire::on_pushButton_clicked()
 {
     qDebug()<<"MainWindowGestionnaire::on_pushButton_clicked()";
+    ui->listWidgetProducts->clear();
+    ui->listWidgetCategories->clear();
+    ui->listWidgetAisles->clear();
+    ui->pushButtonDeleteAisles->setEnabled(false);
     DialogModerateSuggestions maDialog;
-
-    if(maDialog.exec()==QDialog::Accepted)
-    {
-        /*
-        //vérification des id du vecteur si un id libre le garder
-        int id = 1;
-        int i=0;
-        while(vectContact[i].getId()==id)
-        {
-            id++;
-            i++;
-        }
-
-
-        // on récupère les infos entrées
-        QString prenom = diagAdd.getPrenom();
-        QString nom = diagAdd.getNom();
-        QString email = diagAdd.getEmail();
-        QString telephone = diagAdd.getTelephone();
-        // si le nom et le prenom sont rempli
-        if (!prenom.isEmpty() && !nom.isEmpty())
-        {
-            QSqlQuery reqInsertContact;
-            QString textReq = "insert into contact values (";
-            textReq += QString::number(id);
-            textReq += ", '";
-            textReq += prenom;
-            textReq += "', '";
-            textReq += nom;
-            textReq += "', '";
-            textReq += email;
-            textReq += "', ";
-            textReq += telephone;
-            textReq += ");";
-            qDebug()<<textReq;
-            // création du contact dans la bdd
-            reqInsertContact.exec(textReq);
-            // création du Contact
-            Contact nouveauContact(id,prenom,nom,email,telephone);
-            // pushback dans le vecteur de tous les Contact
-            vectContact.push_back(nouveauContact);
-        }
-        */
-    }
-    //on rerempli la liste avec les nouveaux produits
-    chargeProduits();
+    maDialog.exec();
+    chargeRayons();
 }

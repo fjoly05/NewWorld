@@ -14,9 +14,9 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     QSqlDatabase maBase = QSqlDatabase::addDatabase("QMYSQL");
-    maBase.setDatabaseName("dbNewWorld3");
+    maBase.setDatabaseName("dbNewWorld2");
     maBase.setHostName("localhost");
-    maBase.setUserName("adminDbNewWorld3");
+    maBase.setUserName("adminDbNewWorld2");
     maBase.setPassword("Pa$$w0rd");
     if(maBase.open())
     {
@@ -24,10 +24,10 @@ int main(int argc, char *argv[])
         if(w.exec()==DialogConnection::Accepted)
         {
 
-            QString mail = w.getMail();
+            QString login = w.getLogin();
             QString password = w.getPassword();
-            QString textReq = "select nomPers, prenomPers, idTypeP, supprimePers from Personnel where email='";
-            textReq += mail;
+            QString textReq = "select nomPers, prenomPers, idTypeP, supprimePers from Personnel where loginPers='";
+            textReq += login;
             textReq += "' and mdp='";
             textReq += password;
             textReq += "';";

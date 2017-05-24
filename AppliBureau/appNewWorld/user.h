@@ -16,8 +16,8 @@ public:
     QString getPrenom() const;
     void setPrenom(const QString &value);
 
-    QString getEmail() const;
-    void setEmail(const QString &value);
+    QString getLogin() const;
+    void setLogin(const QString &value);
 
     int getTypePersonnel() const;
     void setTypePersonnel(const int &value);
@@ -39,7 +39,7 @@ private:
     int numeroPersonnel;
     QString nom;
     QString prenom;
-    QString email;
+    QString login;
     int typePersonnel;
     QString ssNumber;
     QString mdp;

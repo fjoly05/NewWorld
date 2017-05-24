@@ -20,15 +20,15 @@ void DialogConnection::on_pushButtonQuit_clicked()
 
 void DialogConnection::on_pushButtonConnection_clicked()
 {
-    mail = ui->lineEditLogin->text();
+    login = ui->lineEditLogin->text();
     password = ui->lineEditPassword->text();
 
     accept();
 }
 
-QString DialogConnection::getMail()
+QString DialogConnection::getLogin()
 {
-    return mail;
+    return login;
 }
 
 QString DialogConnection::getPassword()
