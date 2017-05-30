@@ -1,6 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import { ModelVisite } from '../../models/ModelVisite'
+
+import { ControleurVisite } from '../../providers/controleur-visite';
 
 declare var google;
 
@@ -20,12 +23,25 @@ export class MapPage {
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, public navParams: NavParams, private controleurVisite : ControleurVisite)
+  {
+    //debut
+    //appel json
+    controleurVisite.load().subscribe(waypts => {
+      this.waypts = waypts;
+      console.log("dans le constructeur");
+      console.log(this.waypts);
+      this.calculateAndDisplayRoute();
+    });
   }
 
   ionViewDidLoad(){
     this.initMap();
+    //ici j'ajoute le passage par sigoyer
+    this.wayptrue;
+    //et manteyer
+    this.waypts[1]={location:'manteyer france', stopover:true};
+    this.calculateAndDisplayRoute();
   }
 
   initMap() {
