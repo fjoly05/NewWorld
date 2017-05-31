@@ -5,15 +5,5 @@
 </ion-header>
 
 <ion-content padding="">
-  <div id="floating-panel">
-    <b>Start: </b>
-    <select [(ngModel)]="start" id="start" (change)="calculateAndDisplayRoute()">
-      <option value="chicago, il">Chicago</option>
-    </select><br>
-    <b>End: </b>
-    <select [(ngModel)]="end" id="end" (change)="calculateAndDisplayRoute()">
-      <option value="chicago, il">Chicago</option>
-    </select>
-    </div>
     <div #map id="map"></div>
 </ion-content>>

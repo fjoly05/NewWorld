@@ -3,8 +3,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-import { ModelVisite } from '../../models/ModelVisite'
-
+import { ModelVisite } from '../../models/ModelVisite';
 /*
   Generated class for the ControleurVisiteProvider provider.
 
@@ -15,15 +14,15 @@ import { ModelVisite } from '../../models/ModelVisite'
 @Injectable()
 export class ControleurVisiteProvider {
 
-  //jsonApiUrl = 'http://10.0.2.2/~fjoly/public_html/NewWorld/AppliAngular/jsonCreator.php
-  jsonApiUrl = 'http://172.27.56.8/~fjoly/public_html/NewWorld/AppliAngular/jsonCreator.php'
+  //jsonApiUrl = 'http://10.0.2.2/~fjoly/NewWorld/AppliAngular/jsonCreator.php
+  jsonApiUrl = 'http://172.27.56.7/~fjoly/NewWorld/AppliAngular/ionicNewWorld/jsonCreator.php'
   constructor(public http: Http) { }
 
   load(): Observable<ModelVisite[]>{
     //console.log(this.jsonApiUrl);
     //console.log(this.http.get(`${this.jsonApiUrl}?idControleur=2`));
 
+    console.log(this.http.get(`${this.jsonApiUrl}?idControleur=2`).map(res => <ModelVisite[]>res.json()));
     return this.http.get(`${this.jsonApiUrl}?idControleur=2`).map(res => <ModelVisite[]>res.json());
   }
-
 }

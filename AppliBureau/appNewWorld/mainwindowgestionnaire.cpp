@@ -10,6 +10,7 @@
 #include <QVector>
 #include <QTableWidget>
 #include <QtGui>
+#include <QtAlgorithms>
 
 MainWindowGestionnaire::MainWindowGestionnaire(QWidget *parent) :
     QMainWindow(parent),
@@ -166,9 +167,10 @@ void MainWindowGestionnaire::on_pushButtonAdd_clicked()
     while(getNumeros.next())
     {
         int numero = getNumeros.value(0).toInt();
-        qDebug()<< numero;
+        qDebug()<< "id dans la req :"<<numero;
         vectId.push_back(numero);
     }
+    qSort(vectId);
     //vérification des ids du vecteur si un id libre le garder
     int id = 1;
     int i=0;
