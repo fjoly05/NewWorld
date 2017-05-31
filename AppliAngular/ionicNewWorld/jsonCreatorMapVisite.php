@@ -21,12 +21,13 @@ connexion();
 $requete1="set names utf8;";
 $res1=mysql_query($requete1);
 
-$requete= "select concat (utilisateur.villeU,', France') as location, true as
-    stopover from visite inner join ControleProducteur on visite.idVisite =
-    ControleProducteur.idVisite
-    inner join utilisateur on ControleProducteur.idU =
-        utilisateur.idU where visite.controleur = ".$_GET["idControleur"]
-        .";";
+$requete= "
+	select concat (utilisateur.villeU,', France') as location, true as stopover
+	from visite
+	inner join ControleProducteur on visite.idVisite = ControleProducteur.idVisite
+    inner join utilisateur on ControleProducteur.idU = utilisateur.idU
+	where visite.controleur = ".$_GET["idControleur"].";
+	";
 
 //echo $requete
 $result = mysql_query($requete);

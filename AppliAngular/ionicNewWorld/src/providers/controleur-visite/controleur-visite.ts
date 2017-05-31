@@ -15,7 +15,7 @@ import { ModelVisite } from '../../models/ModelVisite';
 export class ControleurVisiteProvider {
 
   //jsonApiUrl = 'http://10.0.2.2/~fjoly/NewWorld/AppliAngular/jsonCreator.php
-  jsonApiUrl = 'http://172.27.56.7/~fjoly/NewWorld/AppliAngular/ionicNewWorld/jsonCreator.php'
+  jsonApiUrl = 'http://172.29.56.7/~fjoly/NewWorld/AppliAngular/ionicNewWorld/jsonCreatorMapVisite.php'
   constructor(public http: Http) { }
 
   load(): Observable<ModelVisite[]>{

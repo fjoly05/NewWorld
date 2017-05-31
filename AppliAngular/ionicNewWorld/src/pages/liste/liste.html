@@ -1,17 +1,28 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Listes des visites
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
-    </ion-item>
+    <ion-list-header>
+      Visites
+    </ion-list-header>
+    <a ion-item (click)="openModal({charNum: 0})">
+      <ion-icon name="arrow-forward" item-left></ion-icon>
+      Gollum
+    </a>
+    <a ion-item (click)="openModal({charNum: 1})">
+      <ion-icon name="arrow-forward" item-left></ion-icon>
+      Frodo Baggins
+    </a>
+    <a ion-item (click)="openModal({charNum: 2})">
+      <ion-icon name="arrow-forward" item-left></ion-icon>
+      Sam
+    </a>
   </ion-list>
+
 </ion-content>

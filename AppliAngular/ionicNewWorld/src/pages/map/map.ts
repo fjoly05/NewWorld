@@ -26,7 +26,7 @@ export class MapPage {
   {
     //debut
     //appel json
-    console.log("esprit es tu la ?");
+    console.log("debut constructeur");
     controleurVisiteProvider.load().subscribe(waypts => { 
       this.waypts = waypts;
       console.log("dans le constructeur");
