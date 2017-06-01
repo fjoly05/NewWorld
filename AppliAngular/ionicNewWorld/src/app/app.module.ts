@@ -7,17 +7,20 @@ import { MyApp } from './app.component';
 import { ListePage } from '../pages/liste/liste';
 import { MapPage } from '../pages/map/map';
 import { TabsPage } from '../pages/tabs/tabs';
+import { ModalPage } from '../pages/liste/modalContent'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ControleurVisiteProvider } from '../providers/controleur-visite/controleur-visite';
+import { ControleurVisiteListProvider } from '../providers/controleur-visite-list/controleur-visite-list';
 
 @NgModule({
   declarations: [
     MyApp,
     ListePage,
     MapPage,
-    TabsPage
+    TabsPage,
+    ModalPage
   ],
   imports: [
     BrowserModule,
@@ -29,13 +32,15 @@ import { ControleurVisiteProvider } from '../providers/controleur-visite/control
     MyApp,
     ListePage,
     MapPage,
-    TabsPage
+    TabsPage,
+    ModalPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ControleurVisiteProvider
+    ControleurVisiteProvider,
+    ControleurVisiteListProvider
   ]
 })
 export class AppModule {}

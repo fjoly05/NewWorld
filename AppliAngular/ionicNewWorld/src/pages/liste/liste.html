@@ -7,22 +7,17 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <ion-list *ngFor="let visite of visites">
+    <!--
     <ion-list-header>
       Visites
     </ion-list-header>
+    -->
+
     <a ion-item (click)="openModal({charNum: 0})">
       <ion-icon name="arrow-forward" item-left></ion-icon>
-      Gollum
-    </a>
-    <a ion-item (click)="openModal({charNum: 1})">
-      <ion-icon name="arrow-forward" item-left></ion-icon>
-      Frodo Baggins
-    </a>
-    <a ion-item (click)="openModal({charNum: 2})">
-      <ion-icon name="arrow-forward" item-left></ion-icon>
-      Sam
+      {{visite.id}} {{visite.prenom}} {{visite.nom}} {{visite.ville}} 
     </a>
   </ion-list>
-
 </ion-content>
+

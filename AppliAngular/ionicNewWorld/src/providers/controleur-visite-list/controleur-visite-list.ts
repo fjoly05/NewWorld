@@ -12,10 +12,10 @@ import { ModelVisite } from '../../models/ModelVisite';
 */
 
 @Injectable()
-export class ControleurVisiteProvider {
+export class ControleurVisiteListProvider {
 
   //jsonApiUrl = 'http://10.0.2.2/~fjoly/NewWorld/AppliAngular/jsonCreator.php
-  jsonApiUrl = 'http://172.29.56.7/~fjoly/NewWorld/AppliAngular/ionicNewWorld/jsonCreatorMapVisite.php'
+  jsonApiUrl = 'http://172.29.56.7/~fjoly/NewWorld/AppliAngular/ionicNewWorld/jsonCreatorListeVisite.php'
   constructor(public http: Http) { }
 
   load(): Observable<ModelVisite[]>{

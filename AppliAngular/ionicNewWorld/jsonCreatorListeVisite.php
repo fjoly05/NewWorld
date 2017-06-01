@@ -22,7 +22,7 @@ $requete1="set names utf8;";
 $res1=mysql_query($requete1);
 
 $requete= "
-	select utilisateur.prenomU as prenom, utilisateur.nomU as nom, utilisateur.villeU as ville                                                                                                        
+	select visite.idVisite as id, utilisateur.prenomU as prenom, utilisateur.nomU as nom, utilisateur.villeU as ville                                                                                                        
     from visite                                                                                                                                                                                       
     inner join ControleProducteur on visite.idVisite = ControleProducteur.idVisite                                                                                                                    
     inner join utilisateur on ControleProducteur.idU = utilisateur.idU    
