@@ -14,9 +14,9 @@
     </ion-list-header>
     -->
 
-    <a ion-item (click)="openModal({charNum: 0})">
+    <a ion-item (click)="openModal({visNum: visite.id})">
       <ion-icon name="arrow-forward" item-left></ion-icon>
-      {{visite.id}} {{visite.prenom}} {{visite.nom}} {{visite.ville}} 
+      {{visite.prenom}} {{visite.nom}} {{visite.ville}}
     </a>
   </ion-list>
 </ion-content>

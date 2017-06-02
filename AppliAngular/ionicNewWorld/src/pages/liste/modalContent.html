@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Description
+      {{visite.prenom}} {{visite.nom}}
     </ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
@@ -14,16 +14,34 @@
 <ion-content>
   <ion-list>
       <ion-item>
-        <ion-avatar item-start>
-          <img src="{{character.image}}">
-        </ion-avatar>
-        <h2>{{character.name}}</h2>
-        <p>{{character.quote}}</p>
+        <h1>{{visite.libelle}}</h1>
+        <br/>
+        <h2>{{visite.adresse}}</h2>
+        <h2>{{visite.ville}}</h2>
+        <h2>{{visite.codePostal}}</h2>    
+        <br/>
+        <p>{{visite.date}}</p>
       </ion-item>
-      <ion-item *ngFor="let item of character['items']">
-        {{item.title}}
+      <ion-item>
+        <ion-label>Est validé ?</ion-label>
+        <ion-toggle value="foo" checked={{visite.concluante}}></ion-toggle>
+      </ion-item>
+      <ion-item>
+        Commentaires
         <ion-note item-end>
-          {{item.note}}
+          {{visite.motifRejet}}
+        </ion-note>
+      </ion-item>
+      <ion-item>
+        Heure début
+        <ion-note item-end>
+          {{visite.debut}}
+        </ion-note>
+      </ion-item>
+      <ion-item>
+        Heure fin
+        <ion-note item-end>
+          {{visite.fin}}
         </ion-note>
       </ion-item>
   </ion-list>

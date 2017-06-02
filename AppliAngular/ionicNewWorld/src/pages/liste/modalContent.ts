@@ -1,54 +1,31 @@
 import { Component } from '@angular/core';
 import { Platform, NavParams, ViewController } from 'ionic-angular';
+import { ControleurVisiteListModalProvider } from '../../providers/controleur-visite-list-modal/controleur-visite-list-modal';
 
 @Component({
   templateUrl: 'modalContent.html'
 })
 
 export class ModalPage {
-  character;
+  uneVisite = [];
+  visite = [];
 
-  constructor(
-    public platform: Platform,
-    public params: NavParams,
-    public viewCtrl: ViewController
-  ) {
-    var characters = [
-      {
-        name: 'Gollum',
-        quote: 'Sneaky little hobbitses!',
-        image: 'assets/img/avatar-gollum.jpg',
-        items: [
-          { title: 'Race', note: 'Hobbit' },
-          { title: 'Culture', note: 'River Folk' },
-          { title: 'Alter Ego', note: 'Smeagol' }
-        ]
-      },
-      {
-        name: 'Frodo',
-        quote: 'Go back, Sam! I\'m going to Mordor alone!',
-        image: 'assets/img/avatar-frodo.jpg',
-        items: [
-          { title: 'Race', note: 'Hobbit' },
-          { title: 'Culture', note: 'Shire Folk' },
-          { title: 'Weapon', note: 'Sting' }
-        ]
-      },
-      {
-        name: 'Samwise Gamgee',
-        quote: 'What we need is a few good taters.',
-        image: 'assets/img/avatar-samwise.jpg',
-        items: [
-          { title: 'Race', note: 'Hobbit' },
-          { title: 'Culture', note: 'Shire Folk' },
-          { title: 'Nickname', note: 'Sam' }
-        ]
-      }
-    ];
-    this.character = characters[this.params.get('charNum')];
+  constructor(public platform: Platform, public params: NavParams, public viewCtrl: ViewController, private controleurVisiteListModalProvider: ControleurVisiteListModalProvider) {
+    //debut
+    //appel json
+    console.log("debut constructeur");
+    controleurVisiteListModalProvider.load().subscribe(uneVisite => { 
+      this.uneVisite = uneVisite;
+      console.log("dans le constructeur");
+      console.log(this.uneVisite);
+      this.visite = this.uneVisite[this.params.get('visNum')];
+      console.log(this.visite);
+    });
+
   }
 
   dismiss() {
+    //requete de renvoie ?
     this.viewCtrl.dismiss();
   }
 }

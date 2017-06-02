@@ -13,6 +13,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ControleurVisiteProvider } from '../providers/controleur-visite/controleur-visite';
 import { ControleurVisiteListProvider } from '../providers/controleur-visite-list/controleur-visite-list';
+import { ControleurVisiteListModalProvider } from '../providers/controleur-visite-list-modal/controleur-visite-list-modal';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ControleurVisiteListProvider } from '../providers/controleur-visite-lis
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ControleurVisiteProvider,
-    ControleurVisiteListProvider
+    ControleurVisiteListProvider,
+    ControleurVisiteListModalProvider
   ]
 })
 export class AppModule {}

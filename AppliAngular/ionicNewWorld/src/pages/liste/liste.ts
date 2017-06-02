@@ -21,9 +21,9 @@ export class ListePage {
       console.log(this.visites);
     });
   }
-  openModal(characterNum) {
+  openModal(visiteNum) {
 
-    let modal = this.modalCtrl.create(ModalPage, characterNum);
+    let modal = this.modalCtrl.create(ModalPage, visiteNum);
     modal.present();
   }
 
