@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
@@ -86,6 +87,20 @@ public:
     QPushButton *pushButtonClear;
     QSpacerItem *horizontalSpacer_6;
     QWidget *tabPlaniVisite;
+    QHBoxLayout *horizontalLayout_15;
+    QVBoxLayout *verticalLayout_9;
+    QLabel *label_3;
+    QTableWidget *tableWidgetProducersVisit;
+    QSpacerItem *verticalSpacer_4;
+    QVBoxLayout *verticalLayout_10;
+    QHBoxLayout *horizontalLayout_14;
+    QLabel *label;
+    QDateEdit *dateEditVisit;
+    QLabel *label_2;
+    QListWidget *listWidgetAvailableControllers;
+    QVBoxLayout *verticalLayout_11;
+    QSpacerItem *verticalSpacer_3;
+    QPushButton *pushButtonAssignController;
     QWidget *tabAjoutRayonProduit;
     QVBoxLayout *verticalLayout_8;
     QHBoxLayout *horizontalLayout_13;
@@ -366,6 +381,71 @@ public:
         tabWidget->addTab(tabGestionPerso, QString());
         tabPlaniVisite = new QWidget();
         tabPlaniVisite->setObjectName(QStringLiteral("tabPlaniVisite"));
+        horizontalLayout_15 = new QHBoxLayout(tabPlaniVisite);
+        horizontalLayout_15->setObjectName(QStringLiteral("horizontalLayout_15"));
+        verticalLayout_9 = new QVBoxLayout();
+        verticalLayout_9->setObjectName(QStringLiteral("verticalLayout_9"));
+        label_3 = new QLabel(tabPlaniVisite);
+        label_3->setObjectName(QStringLiteral("label_3"));
+
+        verticalLayout_9->addWidget(label_3);
+
+        tableWidgetProducersVisit = new QTableWidget(tabPlaniVisite);
+        tableWidgetProducersVisit->setObjectName(QStringLiteral("tableWidgetProducersVisit"));
+
+        verticalLayout_9->addWidget(tableWidgetProducersVisit);
+
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_9->addItem(verticalSpacer_4);
+
+
+        horizontalLayout_15->addLayout(verticalLayout_9);
+
+        verticalLayout_10 = new QVBoxLayout();
+        verticalLayout_10->setObjectName(QStringLiteral("verticalLayout_10"));
+        horizontalLayout_14 = new QHBoxLayout();
+        horizontalLayout_14->setObjectName(QStringLiteral("horizontalLayout_14"));
+        label = new QLabel(tabPlaniVisite);
+        label->setObjectName(QStringLiteral("label"));
+
+        horizontalLayout_14->addWidget(label);
+
+        dateEditVisit = new QDateEdit(tabPlaniVisite);
+        dateEditVisit->setObjectName(QStringLiteral("dateEditVisit"));
+
+        horizontalLayout_14->addWidget(dateEditVisit);
+
+
+        verticalLayout_10->addLayout(horizontalLayout_14);
+
+        label_2 = new QLabel(tabPlaniVisite);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        verticalLayout_10->addWidget(label_2);
+
+        listWidgetAvailableControllers = new QListWidget(tabPlaniVisite);
+        listWidgetAvailableControllers->setObjectName(QStringLiteral("listWidgetAvailableControllers"));
+
+        verticalLayout_10->addWidget(listWidgetAvailableControllers);
+
+
+        horizontalLayout_15->addLayout(verticalLayout_10);
+
+        verticalLayout_11 = new QVBoxLayout();
+        verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_11->addItem(verticalSpacer_3);
+
+        pushButtonAssignController = new QPushButton(tabPlaniVisite);
+        pushButtonAssignController->setObjectName(QStringLiteral("pushButtonAssignController"));
+
+        verticalLayout_11->addWidget(pushButtonAssignController);
+
+
+        horizontalLayout_15->addLayout(verticalLayout_11);
+
         tabWidget->addTab(tabPlaniVisite, QString());
         tabAjoutRayonProduit = new QWidget();
         tabAjoutRayonProduit->setObjectName(QStringLiteral("tabAjoutRayonProduit"));
@@ -552,7 +632,7 @@ public:
 
         retranslateUi(MainWindowGestionnaire);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindowGestionnaire);
@@ -582,6 +662,10 @@ public:
         pushButtonAdd->setText(QApplication::translate("MainWindowGestionnaire", "&Add", 0));
         pushButtonClear->setText(QApplication::translate("MainWindowGestionnaire", "&Clear", 0));
         tabWidget->setTabText(tabWidget->indexOf(tabGestionPerso), QApplication::translate("MainWindowGestionnaire", "&Staff management", 0));
+        label_3->setText(QApplication::translate("MainWindowGestionnaire", "Producers :", 0));
+        label->setText(QApplication::translate("MainWindowGestionnaire", "Choose a date :", 0));
+        label_2->setText(QApplication::translate("MainWindowGestionnaire", "Available controllers :", 0));
+        pushButtonAssignController->setText(QApplication::translate("MainWindowGestionnaire", "&Assign selected controller", 0));
         tabWidget->setTabText(tabWidget->indexOf(tabPlaniVisite), QApplication::translate("MainWindowGestionnaire", "&Visits planning", 0));
         label_6->setText(QApplication::translate("MainWindowGestionnaire", "Aisles", 0));
         pushButtonAddAisles->setText(QApplication::translate("MainWindowGestionnaire", "Add", 0));

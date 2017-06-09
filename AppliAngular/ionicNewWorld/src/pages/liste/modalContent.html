@@ -24,8 +24,18 @@
       </ion-item>
       <ion-item>
         <ion-label>Est validé ?</ion-label>
-        <ion-toggle value="foo" checked={{visite.concluante}}></ion-toggle>
-      </ion-item>
+        <ion-toggle value="foo" checked="true"></ion-toggle> 
+        </ion-item>
+        
+        <!--
+        <button (click)="show = !show">{{show ? 'hide' : 'show'}}</button>
+        <br>
+        show = {{show}}
+        <br>
+        <div *ngIf="show; else elseBlock">Text to show</div>
+        <ng-template #elseBlock>Alternate text while primary text is hidden</ng-template>
+        -->
+
       <ion-item>
         Commentaires
         <ion-note item-end>

@@ -18,6 +18,7 @@ MainWindowGestionnaire::MainWindowGestionnaire(QWidget *parent) :
 {
     ui->setupUi(this);
     //onglet 1
+    qDebug()<<"onglet 1";
     ui->labelHireDate->hide();
     ui->labelHireDate2->hide();
     ui->labelId->hide();
@@ -26,7 +27,18 @@ MainWindowGestionnaire::MainWindowGestionnaire(QWidget *parent) :
     ui->pushButtonAdd->setEnabled(false);
     ui->radioButtonController->setChecked(true);
 
+    //onglet 2
+    qDebug()<<"onglet 2";
+    chargeProducteurs();
+    ui->dateEditVisit->setDate(QDate::currentDate());
+    chargeControleurs();
+    ui->pushButtonAssignController->setEnabled(false);
+    qDebug()<<ui->listWidgetAvailableControllers->currentIndex();
+    qDebug()<<ui->listWidgetAvailableControllers->currentItem();
+    checkSelect();
+
     //onglet 3
+    qDebug()<<"onglet 3";
     ui->pushButtonAddCategories->setEnabled(false);
     ui->pushButtonAddProducts->setEnabled(false);
     ui->pushButtonAddAisles->setEnabled(false);
@@ -41,7 +53,111 @@ MainWindowGestionnaire::MainWindowGestionnaire(QWidget *parent) :
     chargeLeTableau();
     chargeRayons();
 
+    //choisir l'onglet 1 comme onglet de départ
     ui->tabWidget->setCurrentIndex(0);
+}
+
+void MainWindowGestionnaire::checkSelect()
+{
+    QListWidgetItem* itemVideList=NULL;
+    QTableWidgetItem* itemVideTable=NULL;
+    bool listClicked=false;
+    bool tableClicked=false;
+    if (ui->listWidgetAvailableControllers->currentItem()==itemVideList)
+    {
+        listClicked=false;
+    }else
+    {
+        listClicked=true;
+    }
+    if (ui->tableWidgetProducersVisit->currentItem()==NULL)
+    {
+        tableClicked=false;
+    }else
+    {
+        tableClicked=true;
+    }
+    qDebug()<<"listClicked"<<listClicked;
+    qDebug()<<"tableClicked"<<tableClicked;
+    qDebug()<<"total"<<(listClicked&&tableClicked);
+    ui->pushButtonAssignController->setEnabled(listClicked&&tableClicked);
+}
+
+void MainWindowGestionnaire::chargeControleurs()
+{
+    qDebug()<<"MainWindowGestionnaire::chargeControleurs()";
+    ui->listWidgetAvailableControllers->clear();
+    QString laDate = ui->dateEditVisit->date().toString("yyyy-MM-dd");
+    QString textReq = "select personnel.idPers, personnel.prenomPers, personnel.nomPers, count(visite.idVisite) as nbVisite ";
+    textReq += "from personnel inner join visite on personnel.idPers=visite.controleur ";
+    textReq += "where personnel.idtypeP=1 and dateVisite='"+laDate+"' ";
+    textReq += "group by controleur ";
+    textReq += "having nbVisite < 6 ";
+    textReq += "union ";
+    textReq += "select idPers, prenomPers, nomPers, 0 as nbVisite ";
+    textReq += "from personnel where idTypeP=1 and supprimePers = 0 ";
+    textReq += "and idPers not in (select personnel.idPers ";
+    textReq += "from personnel inner join visite on personnel.idPers=visite.controleur ";
+    textReq += "where personnel.idtypeP=1 and dateVisite='"+laDate+"' ";
+    textReq += "group by controleur ";
+    textReq += "having count(visite.idVisite)< 6) ";
+    qDebug()<<textReq;
+
+    QSqlQuery reqDonnantControleurs(textReq);
+    while(reqDonnantControleurs.next())
+    {
+        //ajout d'un item en y associant l'id
+        QListWidgetItem* unControleur=new QListWidgetItem(reqDonnantControleurs.value(1).toString() + " " + reqDonnantControleurs.value(2).toString());
+        unControleur->setData(32,reqDonnantControleurs.value(0).toString());
+        ui->listWidgetAvailableControllers->addItem(unControleur);
+
+    }
+}
+
+void MainWindowGestionnaire::chargeProducteurs()
+{
+    qDebug()<<"MainWindowGestionnaire::chargeProducteurs()";
+    QString textReq = " select utilisateur.idU, concat(utilisateur.prenomU, ' ', utilisateur.nomU) as prenomNom, max(visite.dateVisite) as dateMax from utilisateur inner join ControleProducteur on utilisateur.idU = ControleProducteur.idU inner join visite on ControleProducteur.idVisite = visite.idVisite group by utilisateur.idU";
+    qDebug()<<textReq;
+
+
+    QSqlQuery reqDonnantProducteurs(textReq);
+
+    int nombreDeColonnes= 2;
+    int nombreDeProducteurs = reqDonnantProducteurs.size();
+    QStringList listIntitule;
+    listIntitule<<"Producers"<<"Last visit";
+
+
+    qDebug()<<nombreDeColonnes;
+    qDebug()<<nombreDeProducteurs;
+    int ligne = 0;
+    ui->tableWidgetProducersVisit->setColumnCount(nombreDeColonnes);
+    ui->tableWidgetProducersVisit->setRowCount(nombreDeProducteurs);
+    while(reqDonnantProducteurs.next())
+    {
+        for (int col=0;col<nombreDeColonnes;col++)
+        {
+            qDebug()<<col;
+
+            QString result = reqDonnantProducteurs.value(col+1).toString();
+            QTableWidgetItem* item = new QTableWidgetItem(result);
+            ui->tableWidgetProducersVisit->setItem(ligne,col,item);
+            qDebug()<<result;
+        }
+        // on ajoute à la premiere colonne de chaque ligne la valeur de idPers
+        ui->tableWidgetProducersVisit->item(ligne,0)->setData(32,reqDonnantProducteurs.value(0).toString());
+        qDebug()<<ui->tableWidgetProducersVisit->item(ligne,0)->data(32).toString();
+        ligne++;
+    }
+    ui->tableWidgetProducersVisit->setHorizontalHeaderLabels(listIntitule);
+
+    //resize table
+    ui->tableWidgetProducersVisit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    ui->tableWidgetProducersVisit->resizeColumnsToContents();
+    ui->tableWidgetProducersVisit->setFixedSize(ui->tableWidgetProducersVisit->horizontalHeader()->length()+ui->tableWidgetProducersVisit->verticalHeader()->width()+20, ui->tableWidgetProducersVisit->verticalHeader()->length()+ui->tableWidgetProducersVisit->horizontalHeader()->height()+2);
+    checkSelect();
 }
 
 void MainWindowGestionnaire::chargeRayons()
@@ -731,4 +847,25 @@ void MainWindowGestionnaire::on_pushButton_clicked()
     DialogModerateSuggestions maDialog;
     maDialog.exec();
     chargeRayons();
+}
+
+void MainWindowGestionnaire::on_dateEditVisit_dateChanged(const QDate &date)
+{
+    chargeControleurs();
+}
+
+void MainWindowGestionnaire::on_tableWidgetProducersVisit_cellClicked(int row, int column)
+{
+    ui->tableWidgetProducersVisit->selectRow(row);
+    checkSelect();
+}
+
+void MainWindowGestionnaire::on_listWidgetAvailableControllers_clicked(const QModelIndex &index)
+{
+    checkSelect();
+}
+
+void MainWindowGestionnaire::on_pushButtonAssignController_clicked()
+{
+
 }

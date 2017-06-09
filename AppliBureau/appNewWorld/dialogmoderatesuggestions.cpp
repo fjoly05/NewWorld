@@ -45,7 +45,7 @@ void DialogModerateSuggestions::chargeAcceptesRejetes()
 
     ui->listWidgetRejectedProds->clear();
     //afficher ceux qui sont dans le vect et dans la base en tant que valideProd='accepte'
-    QString textReq2 = "select idProd, libelleProd, libelleCat from produit inner join categorie on produit.idCat=categorie.idCat where valideProd='rejete' and supprimeProd=0";
+    QString textReq2 = "select idProd, libelleProd, libelleCat from produit inner join categorie on produit.idCat=categorie.idCat where etatProd='REF' and supprimeProd=0";
     qDebug()<<textReq2;
     QSqlQuery reqDonnantProduits2(textReq2);
     int unProduit2;
@@ -107,7 +107,7 @@ void DialogModerateSuggestions::on_pushButtonAccept_clicked()
 
 void DialogModerateSuggestions::on_pushButtonReject_clicked()
 {
-    QString textReq = "update produit set valideProd='rejete' where idProd=";
+    QString textReq = "update produit set etatProd='REF' where idProd=";
     textReq += selectedList->currentItem()->data(32).toString();
     qDebug()<<textReq;
     QSqlQuery reqRejetantProduit;

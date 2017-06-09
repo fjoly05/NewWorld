@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindowGestionnaire_t {
-    QByteArrayData data[34];
-    char stringdata[913];
+    QByteArrayData data[39];
+    char stringdata[1068];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -62,7 +62,12 @@ QT_MOC_LITERAL(29, 755, 31),
 QT_MOC_LITERAL(30, 787, 29),
 QT_MOC_LITERAL(31, 817, 37),
 QT_MOC_LITERAL(32, 855, 35),
-QT_MOC_LITERAL(33, 891, 21)
+QT_MOC_LITERAL(33, 891, 21),
+QT_MOC_LITERAL(34, 913, 28),
+QT_MOC_LITERAL(35, 942, 4),
+QT_MOC_LITERAL(36, 947, 40),
+QT_MOC_LITERAL(37, 988, 41),
+QT_MOC_LITERAL(38, 1030, 37)
     },
     "MainWindowGestionnaire\0on_pushButtonAdd_clicked\0"
     "\0on_tableWidget_cellClicked\0row\0column\0"
@@ -91,7 +96,11 @@ QT_MOC_LITERAL(33, 891, 21)
     "on_listWidgetProducts_clicked\0"
     "on_pushButtonDeleteCategories_clicked\0"
     "on_pushButtonDeleteProducts_clicked\0"
-    "on_pushButton_clicked"
+    "on_pushButton_clicked\0"
+    "on_dateEditVisit_dateChanged\0date\0"
+    "on_tableWidgetProducersVisit_cellClicked\0"
+    "on_listWidgetAvailableControllers_clicked\0"
+    "on_pushButtonAssignController_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -101,7 +110,7 @@ static const uint qt_meta_data_MainWindowGestionnaire[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      28,   14, // methods
+      32,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -109,34 +118,38 @@ static const uint qt_meta_data_MainWindowGestionnaire[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  154,    2, 0x08 /* Private */,
-       3,    2,  155,    2, 0x08 /* Private */,
-       6,    0,  160,    2, 0x08 /* Private */,
-       7,    0,  161,    2, 0x08 /* Private */,
-       8,    0,  162,    2, 0x08 /* Private */,
-       9,    1,  163,    2, 0x08 /* Private */,
-      11,    1,  166,    2, 0x08 /* Private */,
-      12,    1,  169,    2, 0x08 /* Private */,
-      13,    1,  172,    2, 0x08 /* Private */,
-      14,    0,  175,    2, 0x08 /* Private */,
-      15,    0,  176,    2, 0x08 /* Private */,
-      16,    1,  177,    2, 0x08 /* Private */,
-      17,    1,  180,    2, 0x08 /* Private */,
-      18,    1,  183,    2, 0x08 /* Private */,
-      19,    1,  186,    2, 0x08 /* Private */,
-      20,    0,  189,    2, 0x08 /* Private */,
-      21,    0,  190,    2, 0x08 /* Private */,
-      22,    0,  191,    2, 0x08 /* Private */,
-      23,    1,  192,    2, 0x08 /* Private */,
-      24,    1,  195,    2, 0x08 /* Private */,
-      25,    1,  198,    2, 0x08 /* Private */,
-      26,    0,  201,    2, 0x08 /* Private */,
-      27,    1,  202,    2, 0x08 /* Private */,
-      29,    1,  205,    2, 0x08 /* Private */,
-      30,    1,  208,    2, 0x08 /* Private */,
-      31,    0,  211,    2, 0x08 /* Private */,
-      32,    0,  212,    2, 0x08 /* Private */,
-      33,    0,  213,    2, 0x08 /* Private */,
+       1,    0,  174,    2, 0x08 /* Private */,
+       3,    2,  175,    2, 0x08 /* Private */,
+       6,    0,  180,    2, 0x08 /* Private */,
+       7,    0,  181,    2, 0x08 /* Private */,
+       8,    0,  182,    2, 0x08 /* Private */,
+       9,    1,  183,    2, 0x08 /* Private */,
+      11,    1,  186,    2, 0x08 /* Private */,
+      12,    1,  189,    2, 0x08 /* Private */,
+      13,    1,  192,    2, 0x08 /* Private */,
+      14,    0,  195,    2, 0x08 /* Private */,
+      15,    0,  196,    2, 0x08 /* Private */,
+      16,    1,  197,    2, 0x08 /* Private */,
+      17,    1,  200,    2, 0x08 /* Private */,
+      18,    1,  203,    2, 0x08 /* Private */,
+      19,    1,  206,    2, 0x08 /* Private */,
+      20,    0,  209,    2, 0x08 /* Private */,
+      21,    0,  210,    2, 0x08 /* Private */,
+      22,    0,  211,    2, 0x08 /* Private */,
+      23,    1,  212,    2, 0x08 /* Private */,
+      24,    1,  215,    2, 0x08 /* Private */,
+      25,    1,  218,    2, 0x08 /* Private */,
+      26,    0,  221,    2, 0x08 /* Private */,
+      27,    1,  222,    2, 0x08 /* Private */,
+      29,    1,  225,    2, 0x08 /* Private */,
+      30,    1,  228,    2, 0x08 /* Private */,
+      31,    0,  231,    2, 0x08 /* Private */,
+      32,    0,  232,    2, 0x08 /* Private */,
+      33,    0,  233,    2, 0x08 /* Private */,
+      34,    1,  234,    2, 0x08 /* Private */,
+      36,    2,  237,    2, 0x08 /* Private */,
+      37,    1,  242,    2, 0x08 /* Private */,
+      38,    0,  245,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -166,6 +179,10 @@ static const uint qt_meta_data_MainWindowGestionnaire[] = {
     QMetaType::Void, QMetaType::QModelIndex,   28,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QDate,   35,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    4,    5,
+    QMetaType::Void, QMetaType::QModelIndex,   28,
     QMetaType::Void,
 
        0        // eod
@@ -204,6 +221,10 @@ void MainWindowGestionnaire::qt_static_metacall(QObject *_o, QMetaObject::Call _
         case 25: _t->on_pushButtonDeleteCategories_clicked(); break;
         case 26: _t->on_pushButtonDeleteProducts_clicked(); break;
         case 27: _t->on_pushButton_clicked(); break;
+        case 28: _t->on_dateEditVisit_dateChanged((*reinterpret_cast< const QDate(*)>(_a[1]))); break;
+        case 29: _t->on_tableWidgetProducersVisit_cellClicked((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 30: _t->on_listWidgetAvailableControllers_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 31: _t->on_pushButtonAssignController_clicked(); break;
         default: ;
         }
     }
@@ -234,13 +255,13 @@ int MainWindowGestionnaire::qt_metacall(QMetaObject::Call _c, int _id, void **_a
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 28)
+        if (_id < 32)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 28;
+        _id -= 32;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 28)
+        if (_id < 32)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 28;
+        _id -= 32;
     }
     return _id;
 }

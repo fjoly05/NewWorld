@@ -16,10 +16,13 @@ public:
     explicit MainWindowGestionnaire(QWidget *parent = 0);
     QString passwordGeneration (int lenght);
     void chargeLeTableau();
+    void chargeProducteurs();
+    void chargeControleurs();
     void chargeRayons();
     void chargeCategories();
     void chargeProduits();
     void checkLineEdits();
+    void checkSelect();
     ~MainWindowGestionnaire();
     
 private slots:
@@ -78,6 +81,14 @@ private slots:
     void on_pushButtonDeleteProducts_clicked();
 
     void on_pushButton_clicked();
+
+    void on_dateEditVisit_dateChanged(const QDate &date);
+
+    void on_tableWidgetProducersVisit_cellClicked(int row, int column);
+
+    void on_listWidgetAvailableControllers_clicked(const QModelIndex &index);
+
+    void on_pushButtonAssignController_clicked();
 
 private:
     Ui::MainWindowGestionnaire *ui;
