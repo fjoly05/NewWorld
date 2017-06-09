@@ -90,6 +90,11 @@ private slots:
 
     void on_pushButtonAssignController_clicked();
 
+    void on_listWidgetAvailableControllers_doubleClicked(const QModelIndex &index);
+
+
+    void on_lineEditTypeVisit_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindowGestionnaire *ui;
 };

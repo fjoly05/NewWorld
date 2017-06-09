@@ -26,25 +26,28 @@ int main(int argc, char *argv[])
 
             QString login = w.getLogin();
             QString password = w.getPassword();
-            QString textReq = "select nomPers, prenomPers, idTypeP, supprimePers from Personnel where loginPers='";
+            QString textReq = "select nomPers, prenomPers, idTypeP, supprimePers, idPers from personnel where loginPers='";
             textReq += login;
-            textReq += "' and mdp='";
+            textReq += "' and motDePassePers='";
             textReq += password;
             textReq += "';";
             qDebug()<<textReq;
             QSqlQuery connection(textReq);
+
+
+
             if (connection.next())
             {
                 utilisateur.setNom(connection.value(0).toString());
                 utilisateur.setPrenom(connection.value(1).toString());
                 utilisateur.setTypePersonnel(connection.value(2).toInt());
                 utilisateur.setSupprime(connection.value(3).toBool());
+                utilisateur.setNumeroPersonnel(connection.value(4).toInt());
             }
+            qDebug()<<utilisateur.getNumeroPersonnel();
 
 
-
-            //if (utilisateur.getTypePersonnel() == 0 && utilisateur.getSupprime() == false)
-            if (true)
+            if (utilisateur.getTypePersonnel() == 2 && utilisateur.getSupprime() == false)
             {
                 MainWindowGestionnaire g;
                 g.show();
@@ -56,11 +59,9 @@ int main(int argc, char *argv[])
                 return a.exec();
             }else
             {
-                qDebug()<< "salut ça marche pas";
+                qDebug()<< "wrong logs";
             }
-
         }
-
     }else
     {
         qDebug()<<"l'ouverture de la base a échoué !";

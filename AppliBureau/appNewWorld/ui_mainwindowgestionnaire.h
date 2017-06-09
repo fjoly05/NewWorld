@@ -99,6 +99,8 @@ public:
     QLabel *label_2;
     QListWidget *listWidgetAvailableControllers;
     QVBoxLayout *verticalLayout_11;
+    QLabel *label_4;
+    QLineEdit *lineEditTypeVisit;
     QSpacerItem *verticalSpacer_3;
     QPushButton *pushButtonAssignController;
     QWidget *tabAjoutRayonProduit;
@@ -434,6 +436,16 @@ public:
 
         verticalLayout_11 = new QVBoxLayout();
         verticalLayout_11->setObjectName(QStringLiteral("verticalLayout_11"));
+        label_4 = new QLabel(tabPlaniVisite);
+        label_4->setObjectName(QStringLiteral("label_4"));
+
+        verticalLayout_11->addWidget(label_4);
+
+        lineEditTypeVisit = new QLineEdit(tabPlaniVisite);
+        lineEditTypeVisit->setObjectName(QStringLiteral("lineEditTypeVisit"));
+
+        verticalLayout_11->addWidget(lineEditTypeVisit);
+
         verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_11->addItem(verticalSpacer_3);
@@ -632,7 +644,7 @@ public:
 
         retranslateUi(MainWindowGestionnaire);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindowGestionnaire);
@@ -665,6 +677,7 @@ public:
         label_3->setText(QApplication::translate("MainWindowGestionnaire", "Producers :", 0));
         label->setText(QApplication::translate("MainWindowGestionnaire", "Choose a date :", 0));
         label_2->setText(QApplication::translate("MainWindowGestionnaire", "Available controllers :", 0));
+        label_4->setText(QApplication::translate("MainWindowGestionnaire", "Type of visit :", 0));
         pushButtonAssignController->setText(QApplication::translate("MainWindowGestionnaire", "&Assign selected controller", 0));
         tabWidget->setTabText(tabWidget->indexOf(tabPlaniVisite), QApplication::translate("MainWindowGestionnaire", "&Visits planning", 0));
         label_6->setText(QApplication::translate("MainWindowGestionnaire", "Aisles", 0));
@@ -676,8 +689,8 @@ public:
         label_8->setText(QApplication::translate("MainWindowGestionnaire", "Products", 0));
         pushButtonAddProducts->setText(QApplication::translate("MainWindowGestionnaire", "Add", 0));
         pushButtonDeleteProducts->setText(QApplication::translate("MainWindowGestionnaire", "Delete", 0));
-        pushButton->setText(QApplication::translate("MainWindowGestionnaire", "Moderate suggestions", 0));
-        tabWidget->setTabText(tabWidget->indexOf(tabAjoutRayonProduit), QApplication::translate("MainWindowGestionnaire", "&Aisle && Type", 0));
+        pushButton->setText(QApplication::translate("MainWindowGestionnaire", "&Moderate suggestions", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tabAjoutRayonProduit), QApplication::translate("MainWindowGestionnaire", "&Products", 0));
         tabWidget->setTabText(tabWidget->indexOf(tabStatistiques), QApplication::translate("MainWindowGestionnaire", "&Statistics", 0));
     } // retranslateUi
 

@@ -46,7 +46,7 @@ public:
     {
         if (DialogConnection->objectName().isEmpty())
             DialogConnection->setObjectName(QStringLiteral("DialogConnection"));
-        DialogConnection->resize(203, 183);
+        DialogConnection->resize(203, 187);
         verticalLayout = new QVBoxLayout(DialogConnection);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout_2 = new QHBoxLayout();
@@ -92,6 +92,7 @@ public:
 
         lineEditPassword = new QLineEdit(DialogConnection);
         lineEditPassword->setObjectName(QStringLiteral("lineEditPassword"));
+        lineEditPassword->setEchoMode(QLineEdit::Password);
 
         verticalLayout->addWidget(lineEditPassword);
 

@@ -1,6 +1,7 @@
 #include "mainwindowgestionnaire.h"
 #include "ui_mainwindowgestionnaire.h"
 #include "dialogmoderatesuggestions.h"
+#include "dialoginfocontroleur.h"
 #include <QSqlQuery>
 #include <QDebug>
 #include <QtGlobal>
@@ -17,6 +18,8 @@ MainWindowGestionnaire::MainWindowGestionnaire(QWidget *parent) :
     ui(new Ui::MainWindowGestionnaire)
 {
     ui->setupUi(this);
+    extern user utilisateur;
+    ui->labelBonjour->setText(tr("Hello ") + utilisateur.getPrenom() + " " + utilisateur.getNom());
     //onglet 1
     qDebug()<<"onglet 1";
     ui->labelHireDate->hide();
@@ -47,9 +50,6 @@ MainWindowGestionnaire::MainWindowGestionnaire(QWidget *parent) :
     ui->pushButtonDeleteCategories->setEnabled(false);
     ui->pushButtonDeleteProducts->setEnabled(false);
     this->adjustSize();
-    extern user utilisateur;
-    ui->labelBonjour->setText(tr("Hello ") + utilisateur.getPrenom() + " " + utilisateur.getNom());
-    //QString test = utilisateur.getNom();
     chargeLeTableau();
     chargeRayons();
 
@@ -63,6 +63,7 @@ void MainWindowGestionnaire::checkSelect()
     QTableWidgetItem* itemVideTable=NULL;
     bool listClicked=false;
     bool tableClicked=false;
+    bool lineEdit=false;
     if (ui->listWidgetAvailableControllers->currentItem()==itemVideList)
     {
         listClicked=false;
@@ -77,10 +78,18 @@ void MainWindowGestionnaire::checkSelect()
     {
         tableClicked=true;
     }
+    if (ui->lineEditTypeVisit->text()=="")
+    {
+        lineEdit=false;
+    }else
+    {
+        lineEdit=true;
+    }
     qDebug()<<"listClicked"<<listClicked;
     qDebug()<<"tableClicked"<<tableClicked;
-    qDebug()<<"total"<<(listClicked&&tableClicked);
-    ui->pushButtonAssignController->setEnabled(listClicked&&tableClicked);
+    qDebug()<<"lineEdit"<<lineEdit;
+    qDebug()<<"total"<<(listClicked&&tableClicked&&lineEdit);
+    ui->pushButtonAssignController->setEnabled(listClicked&&tableClicked&&lineEdit);
 }
 
 void MainWindowGestionnaire::chargeControleurs()
@@ -107,7 +116,7 @@ void MainWindowGestionnaire::chargeControleurs()
     while(reqDonnantControleurs.next())
     {
         //ajout d'un item en y associant l'id
-        QListWidgetItem* unControleur=new QListWidgetItem(reqDonnantControleurs.value(1).toString() + " " + reqDonnantControleurs.value(2).toString());
+        QListWidgetItem* unControleur=new QListWidgetItem(reqDonnantControleurs.value(1).toString() + " " + reqDonnantControleurs.value(2).toString()+ " " + reqDonnantControleurs.value(3).toString() + " visite(s)");
         unControleur->setData(32,reqDonnantControleurs.value(0).toString());
         ui->listWidgetAvailableControllers->addItem(unControleur);
 
@@ -867,5 +876,64 @@ void MainWindowGestionnaire::on_listWidgetAvailableControllers_clicked(const QMo
 
 void MainWindowGestionnaire::on_pushButtonAssignController_clicked()
 {
+    qDebug()<<"MainWindowGestionnaire::on_listWidgetAvailableControllers_doubleClicked(const QModelIndex &index)";
 
+    //id
+    //on récupère tous les ids dans un vecteur
+    QVector<int> vectId;
+    QSqlQuery getNumeros("select idVisite from visite;");
+    while(getNumeros.next())
+    {
+        int numero = getNumeros.value(0).toInt();
+        qDebug()<< numero;
+        vectId.push_back(numero);
+    }
+    //vérification des ids du vecteur si un id libre le garder
+    int id = 1;
+    int i=0;
+    while(vectId[i]==id)
+    {
+        id++;
+        i++;
+    }
+
+    int idVis = id;
+    QString libelleVisite = ui->lineEditTypeVisit->text();
+    QString laDate = ui->dateEditVisit->date().toString("yyyy-MM-dd");
+    extern user utilisateur;
+    int gestionnaire = utilisateur.getNumeroPersonnel();
+    QString controleur = ui->listWidgetAvailableControllers->currentItem()->data(32).toString();
+
+    QString textReq = "insert into visite (idVisite, libelleVisite, dateVisite, gestionnaire, controleur) values (";
+    textReq += QString::number(idVis);
+    textReq += ", '";
+    textReq += libelleVisite;
+    textReq += "', '";
+    textReq += laDate;
+    textReq += "', ";
+    textReq += QString::number(gestionnaire);
+    textReq += ", ";
+    textReq += controleur;
+    textReq += ");";
+
+    QSqlQuery ajoutVisite;
+    ajoutVisite.exec(textReq);
+
+    chargeProducteurs();
+    chargeControleurs();
+    ui->lineEditTypeVisit->clear();
+}
+
+void MainWindowGestionnaire::on_listWidgetAvailableControllers_doubleClicked(const QModelIndex &index)
+{
+    qDebug()<<"MainWindowGestionnaire::on_listWidgetAvailableControllers_doubleClicked(const QModelIndex &index)";
+    QString idCtrler = ui->listWidgetAvailableControllers->currentItem()->data(32).toString();
+    QString laDate = ui->dateEditVisit->date().toString("yyyy-MM-dd");;
+    DialogInfoControleur maDialog(idCtrler, laDate);
+    maDialog.exec();
+}
+
+void MainWindowGestionnaire::on_lineEditTypeVisit_textChanged(const QString &arg1)
+{
+    checkSelect();
 }
